@@ -1,14 +1,23 @@
-{
-  "name": "default",
-  "type": "postgres",
-  "host": "localhost",
-  "port": 5411,
-  "username": "portfolio",
-  "password": "Eh7gLagHHHzK2h7j",
-  "database": "portfolio",
-  "synchronize": "all",
-  "entities": [
-    "src/modules/feedbacks/domains/feedback.ts"
-  ],
-  "logging": false
-}
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5411,
+    "username": "portfolio",
+    "password": "Eh7gLagHHHzK2h7j",
+    "database": "portfolio",
+    "synchronize": "all",
+    "entities": [
+      "src/domains/feedback/feedback.ts"
+    ],
+    "logging": false
+  },
+  {
+    "name": "mongodb",
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "portfolio"
+  }
+]

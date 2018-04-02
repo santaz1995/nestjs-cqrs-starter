@@ -1,14 +1,17 @@
 import './vendor';
 import * as bodyParser from 'body-parser';
 import { NestFactory } from '@nestjs/core';
-import { ApplicationModule } from './modules/app.module';
 import { createConnection } from 'typeorm';
 import { ValidationPipe } from './pipe/validation.pipe';
+import { ApplicationModule } from './app.module';
+import * as cors from 'cors';
 
 async function bootstrap() {
     createConnection().then(async connection => {
 
         const app = await NestFactory.create(ApplicationModule);
+
+        app.use(cors());
         app.setGlobalPrefix('api');
         app.use(bodyParser.json());
         app.useGlobalPipes(new ValidationPipe());
