@@ -1,12 +1,12 @@
 import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 
-export abstract class TypeOrmMongoRepository {
+export abstract class TypeOrmQueryRepository {
 
     protected entityManager: EntityManager;
 
     protected constructor() {
-        this.entityManager = getManager('mongodb');
+        this.entityManager = getManager("query");
     }
 
     /**

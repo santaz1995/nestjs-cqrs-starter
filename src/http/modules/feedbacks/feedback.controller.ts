@@ -1,8 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { serialize } from 'class-transformer';
 import { CommandBus } from '@nestjs/cqrs';
 import { FeedbackDto } from '../../../infrastructures/dto/feedback.dto';
-import { CreateFeedbackCommand } from '../../../application/command/implements/create-feedback.command';
+import { CreateFeedbackCommand } from '../../../application/command/feedback/create-feedback.command';
 
 @Controller('feedbacks')
 export class FeedbackController {
@@ -12,8 +11,8 @@ export class FeedbackController {
     @Post()
     public async store(@Body() dto: FeedbackDto) {
 
-        serialize(await this.commandBus.execute(
-            new CreateFeedbackCommand(FeedbackDto.fromRequest(dto))
-        ));
+        await this.commandBus.execute(
+            new CreateFeedbackCommand(dto)
+        );
     }
 }

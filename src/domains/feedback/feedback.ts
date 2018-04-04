@@ -1,8 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import { AggregateRoot } from '@nestjs/cqrs';
+import { CreateFeedbackEvent } from '../../application/event/feedback/create-feedback.event';
 
 @Entity('feedbacks')
-export class Feedback {
+export class Feedback extends AggregateRoot {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -56,6 +58,7 @@ export class Feedback {
     deletedAt: Date;
 
     constructor(email: string, name: string, subject: string, message: string, createdAt: Date) {
+        super();
         this.email = email;
         this.name = name;
         this.subject = subject;
@@ -78,5 +81,9 @@ export class Feedback {
 
     public remove(): void {
         this.deletedAt = new Date();
+    }
+
+    public create(id: number) {
+        this.apply(new CreateFeedbackEvent(id));
     }
 }

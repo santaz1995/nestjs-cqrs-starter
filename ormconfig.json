@@ -3,7 +3,7 @@
     "name": "default",
     "type": "postgres",
     "host": "localhost",
-    "port": 5411,
+    "port": 5412,
     "username": "portfolio",
     "password": "Eh7gLagHHHzK2h7j",
     "database": "portfolio",
@@ -14,7 +14,21 @@
     "logging": false
   },
   {
-    "name": "mongodb",
+    "name": "query",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5413,
+    "username": "portfolio",
+    "password": "Eh7gLagHHHzK2h7j",
+    "database": "portfolio",
+    "synchronize": "all",
+    "entities": [
+      "src/domains/feedback/feedback.ts"
+    ],
+    "logging": false
+  },
+  {
+    "name": "c",
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,

@@ -3,7 +3,7 @@ import { FeedbackModule } from './http/modules/feedbacks/feedback.module';
 
 @Module({
     modules: [
-        FeedbackModule
+        FeedbackModule,
     ],
     components: [
     ]

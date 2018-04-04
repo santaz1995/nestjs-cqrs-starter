@@ -1,7 +1,7 @@
 import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 
-export abstract class TypeOrmRepository {
+export abstract class TypeOrmCommandRepository {
 
     protected entityManager: EntityManager;
 

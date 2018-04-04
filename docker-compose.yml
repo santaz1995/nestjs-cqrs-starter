@@ -3,9 +3,19 @@ services:
  database:
     image: postgres:latest
     ports:
-     - 5411:5432
+    - 5412:5432
     volumes:
-     - data:/var/lib/postgresql/data
+    - data:/var/lib/postgresql/command/data
+    environment:
+      POSTGRES_PASSWORD: Eh7gLagHHHzK2h7j
+      POSTGRES_USER: portfolio
+      POSTGRES_DB: portfolio
+ database2:
+    image: postgres:latest
+    ports:
+     - 5413:5432
+    volumes:
+     - data:/var/lib/postgresql/query/data
     environment:
       POSTGRES_PASSWORD: Eh7gLagHHHzK2h7j
       POSTGRES_USER: portfolio
@@ -17,9 +27,9 @@ services:
     volumes:
       - data:/var/lib/monodb/data
     environment:
-        MONGODB_USER: portoflio
+        MONGODB_DATABASE: event
+        MONGODB_USER: event
         MONGODB_PASS: Eh7gLagHHHzK2h7j
-        MONGODB_DATABASE: portoflio
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    command: mongod --smallfiles --logpath=/dev/null
 volumes:
  data: {}

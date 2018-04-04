@@ -1,17 +1,17 @@
 import { EntityRepository, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmRepository } from './type-orm.repository';
-import { FeedbackRepository } from '../../../domains/feedback/feedback.repository';
-import { Feedback } from '../../../domains/feedback/feedback';
+import { FeedbackRepository } from '../../../../domains/feedback/feedback.repository';
+import { Feedback } from '../../../../domains/feedback/feedback';
+import { TypeOrmQueryRepository } from './type-orm.query.repository';
 
 @EntityRepository()
-export class TypeOrmFeedbackRepository extends TypeOrmRepository implements FeedbackRepository {
+export class TypeOrmFeedbackQueryRepository extends TypeOrmQueryRepository implements FeedbackRepository {
 
     /**
      * @param {Feedback} feedback
      * @returns {Promise<Feedback>}
      */
-    public store(feedback: Feedback): Promise<Feedback> {
+    public async store(feedback: Feedback): Promise<Feedback> {
         return this.entityManager.save(feedback);
     }
 
