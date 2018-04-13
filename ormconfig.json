@@ -28,7 +28,7 @@
     "logging": false
   },
   {
-    "name": "c",
+    "name": "event-sourcing",
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,

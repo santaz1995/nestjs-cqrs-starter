@@ -5,16 +5,23 @@ import { validate } from 'class-validator';
 
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {
+
     public async transform(value, metadata: ArgumentMetadata) {
+
         const { metatype } = metadata;
+
         if (!metatype || !this.toValidate(metatype)) {
             return value;
         }
+
         const entity = plainToClass(metatype, value);
+
         const errors = await validate(entity, { validationError: { target: false } });
+
         if (errors.length > 0) {
             throw new BadRequestException(errors);
         }
+
         return entity;
     }
 
