@@ -79,11 +79,18 @@ export class Feedback extends AggregateRoot {
         return new Feedback(email, name, subject, message, new Date());
     }
 
-    public remove(): void {
-        this.deletedAt = new Date();
+    /**
+     * Create event for save feedback to query db
+     * @param {Feedback} feedback
+     */
+    public create(feedback: Feedback) {
+        this.apply(new CreateFeedbackEvent(feedback));
     }
 
-    public create(id: number) {
-        this.apply(new CreateFeedbackEvent(id));
+    /**
+     * Soft delete
+     */
+    public remove(): void {
+        this.deletedAt = new Date();
     }
 }
