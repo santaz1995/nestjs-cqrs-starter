@@ -1,11 +1,11 @@
 import { EntityRepository, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { FeedbackRepository } from '../../../../domains/feedback/feedback.repository';
 import { Feedback } from '../../../../domains/feedback/feedback';
 import { TypeOrmCommandRepository } from './type-orm.command.repository';
+import { FeedbackCommandRepository } from '../../../../domains/feedback/feedback-command.repository';
 
 @EntityRepository()
-export class TypeOrmFeedbackCommandRepository extends TypeOrmCommandRepository implements FeedbackRepository {
+export class TypeOrmFeedbackCommandRepository extends TypeOrmCommandRepository implements FeedbackCommandRepository {
 
     /**
      * @param {Feedback} feedback

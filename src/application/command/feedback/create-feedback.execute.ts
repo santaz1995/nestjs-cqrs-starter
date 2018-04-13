@@ -2,13 +2,13 @@ import { ICommandHandler, CommandHandler, EventPublisher } from '@nestjs/cqrs';
 import { CreateFeedbackCommand } from './create-feedback.command';
 import { Feedback } from '../../../domains/feedback/feedback';
 import { Inject } from '@nestjs/common';
-import { FeedbackRepository } from '../../../domains/feedback/feedback.repository';
+import { FeedbackCommandRepository } from '../../../domains/feedback/feedback-command.repository';
 
 @CommandHandler(CreateFeedbackCommand)
 export class CreateFeedbackExecute implements ICommandHandler<CreateFeedbackCommand> {
 
     constructor(
-        @Inject('FeedbackCommandRepository') private feedbackRepository: FeedbackRepository,
+        @Inject('FeedbackCommandRepository') private feedbackRepository: FeedbackCommandRepository,
         private readonly publisher: EventPublisher) {
     }
 
