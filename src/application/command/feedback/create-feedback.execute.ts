@@ -10,7 +10,6 @@ export class CreateFeedbackExecute implements ICommandHandler<CreateFeedbackComm
     constructor(
         @Inject('FeedbackCommandRepository') private feedbackRepository: FeedbackRepository,
         private readonly publisher: EventPublisher) {
-        console.log('123')
     }
 
     /**
@@ -30,9 +29,10 @@ export class CreateFeedbackExecute implements ICommandHandler<CreateFeedbackComm
         const feedbackRegister = this.publisher.mergeObjectContext(
             await this.feedbackRepository.store(feedback),
         );
-        console.log(feedbackRegister);
-        feedbackRegister.create(1);
+
+        feedbackRegister.create(feedback);
         feedbackRegister.commit();
+
         resolve();
     }
 }
