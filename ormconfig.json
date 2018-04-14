@@ -9,8 +9,15 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "src/domains/feedback/feedback.ts"
+      "dist/domains/feedback/feedback.ts"
     ],
+    "migrations": [
+      "migration/**/*.ts"
+    ],
+    "cli": {
+      "entitiesDir": "dist/domains",
+      "migrationsDir": "migration"
+    },
     "logging": false
   },
   {
@@ -23,8 +30,15 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "src/domains/feedback/feedback.ts"
+      "dist/domains/feedback/feedback.ts"
     ],
+    "migrations": [
+      "migration/**/*.ts"
+    ],
+    "cli": {
+      "entitiesDir": "dist/domains",
+      "migrationsDir": "migration"
+    },
     "logging": false
   },
   {

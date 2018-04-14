@@ -1,7 +1,7 @@
 import { Feedback } from './feedback';
 
-export interface FeedbackRepository {
-
+export interface FeedbackCommandRepository {
+    
     /**
      * @param {Feedback} feedback
      */

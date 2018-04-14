@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { CreateFeedbackEvent } from '../../application/event/feedback/create-feedback.event';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('feedbacks')
 export class Feedback extends AggregateRoot {
