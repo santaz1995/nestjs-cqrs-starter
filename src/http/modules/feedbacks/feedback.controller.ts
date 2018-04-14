@@ -12,7 +12,7 @@ export class FeedbackController {
     @Get()
     public async getAll() {
 
-        await this.commandBus.execute(
+        return await this.commandBus.execute(
             new GetFeedbacksCommand()
         );
     }

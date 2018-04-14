@@ -4,9 +4,9 @@ import { ModuleRef } from '@nestjs/core';
 import { FeedbackController } from './feedback.controller';
 import { TypeOrmFeedbackCommandRepository } from '../../../infrastructures/domain/typeorm/command/type-orm-feedback.command.repository';
 import { TypeOrmFeedbackQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-feedback.query.repository';
-import { EventFeedbackHandler } from '../../../application/event/feedback';
-import { CommandFeedbackHandler } from '../../../application/command/feedback';
-import { QueryFeedbackHandler } from '../../../application/query/feedback';
+import { CreateFeedbackExecute } from "../../../application/command/feedback/create-feedback.execute";
+import { GetFeedbacksExecute } from "../../../application/query/feedback/get-feedbacks.execute";
+import { CreateFeedbackHandler } from "../../../application/event/feedback/create-feedback.handler";
 
 @Module({
     modules: [CQRSModule],
@@ -20,8 +20,9 @@ import { QueryFeedbackHandler } from '../../../application/query/feedback';
             provide: 'FeedbackQueryRepository',
             useClass: TypeOrmFeedbackQueryRepository
         },
-        ...CommandFeedbackHandler,
-        ...EventFeedbackHandler
+        CreateFeedbackExecute,
+        GetFeedbacksExecute,
+        CreateFeedbackHandler
     ],
 })
 export class FeedbackModule implements OnModuleInit {
@@ -36,10 +37,8 @@ export class FeedbackModule implements OnModuleInit {
         this.command$.setModuleRef(this.moduleRef);
         this.event$.setModuleRef(this.moduleRef);
 
-        this.command$.register(CommandFeedbackHandler);
+        this.command$.register([CreateFeedbackExecute, GetFeedbacksExecute]);
         
-        this.command$.register(QueryFeedbackHandler);
-        
-        this.event$.register(EventFeedbackHandler);
+        this.event$.register([CreateFeedbackHandler]);
     }
 }

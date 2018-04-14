@@ -9,15 +9,8 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "dist/domains/feedback/feedback.ts"
+      "src/domains/feedback/feedback.ts"
     ],
-    "migrations": [
-      "migration/**/*.ts"
-    ],
-    "cli": {
-      "entitiesDir": "dist/domains",
-      "migrationsDir": "migration"
-    },
     "logging": false
   },
   {
@@ -30,19 +23,12 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "dist/domains/feedback/feedback.ts"
+      "src/domains/feedback/feedback.ts"
     ],
-    "migrations": [
-      "migration/**/*.ts"
-    ],
-    "cli": {
-      "entitiesDir": "dist/domains",
-      "migrationsDir": "migration"
-    },
     "logging": false
   },
   {
-    "name": "event-sourcing",
+    "name": "c",
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,
