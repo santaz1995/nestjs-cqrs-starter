@@ -6,8 +6,8 @@ import { ValidationPipe } from './pipe/validation.pipe';
 import { ApplicationModule } from './app.module';
 import * as cors from 'cors';
 
-async function bootstrap() {
-    createConnections().then(async connection => {
+function bootstrap() {
+    createConnections().then(async () => {
 
         const app = await NestFactory.create(ApplicationModule);
 
@@ -15,7 +15,7 @@ async function bootstrap() {
         app.setGlobalPrefix('api');
         app.use(bodyParser.json());
         app.useGlobalPipes(new ValidationPipe());
-        app.listen(3002, () => console.log('Application is listening on port 3000.'));
+        app.listen(3000, () => console.log('Application is listening on port 3000.'));
 
     }).catch(error => console.log('TypeORM connection error: ', error));
 
