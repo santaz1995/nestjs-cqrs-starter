@@ -42,7 +42,8 @@ export class PortfolioCategoryController {
         await this.commandBus.execute(
             new UpdatePortfolioCategoryCommand(
                 id,
-                request.title)
+                request.title
+            )
         );
     }
 
