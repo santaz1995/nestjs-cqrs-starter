@@ -19,6 +19,8 @@ export class CreateFeedbackExecute implements ICommandHandler<CreateFeedbackComm
      */
     async execute(command: CreateFeedbackCommand, resolve: (value?) => void) {
 
+        resolve();
+
         const feedback = Feedback.register(
             command.email,
             command.name,
@@ -32,7 +34,5 @@ export class CreateFeedbackExecute implements ICommandHandler<CreateFeedbackComm
 
         feedbackRegister.create(feedback);
         feedbackRegister.commit();
-
-        resolve();
     }
 }

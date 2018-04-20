@@ -1,5 +1,5 @@
 import { IEvent } from '@nestjs/cqrs';
-import { Feedback } from "../../../domains/feedback/feedback";
+import { Feedback } from '../../../domains/feedback/feedback';
 
 export class StoreFeedbackEvent implements IEvent {
 

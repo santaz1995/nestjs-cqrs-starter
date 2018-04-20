@@ -60,6 +60,7 @@ export class PortfolioCategory extends AggregateRoot {
      * @param {PortfolioCategory} portfolioCategory
      */
     public store(portfolioCategory: PortfolioCategory) {
+
         this.apply(new StorePortfolioCategoryEvent(portfolioCategory));
     }
 

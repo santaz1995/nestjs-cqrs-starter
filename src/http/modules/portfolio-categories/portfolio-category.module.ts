@@ -23,11 +23,23 @@ import { StorePortfolioCategoryHandler } from '../../../application/event/catego
             provide: 'PortfolioCategoryQueryRepository',
             useClass: TypeOrmPortfolioCategoryQueryRepository
         },
+        /**
+         * Command
+         */
         CreatePortfolioCategoryExecute,
         UpdatePortfolioCategoryExecute,
+        DeletePortfolioCategoryExecute,
+
+        /**
+         * Query
+         */
         GetPortfolioCategoryExecute,
         GetByIdPortfolioCategoryExecute,
-        DeletePortfolioCategoryExecute
+
+        /**
+         * Event command
+         */
+        StorePortfolioCategoryHandler
     ],
 })
 export class PortfolioCategoryModule implements OnModuleInit {
@@ -45,9 +57,9 @@ export class PortfolioCategoryModule implements OnModuleInit {
         this.command$.register([
             CreatePortfolioCategoryExecute,
             UpdatePortfolioCategoryExecute,
+            DeletePortfolioCategoryExecute,
             GetPortfolioCategoryExecute,
             GetByIdPortfolioCategoryExecute,
-            DeletePortfolioCategoryExecute
         ]);
 
         this.event$.register([StorePortfolioCategoryHandler]);

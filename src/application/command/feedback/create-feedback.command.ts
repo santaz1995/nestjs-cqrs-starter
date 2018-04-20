@@ -26,18 +26,30 @@ export class CreateFeedbackCommand implements ICommand {
         this._message = message;
     }
 
+    /**
+     * @returns {string}
+     */
     get email(): string {
         return this._email;
     }
 
+    /**
+     * @returns {string}
+     */
     get name(): string {
         return this._name;
     }
 
+    /**
+     * @returns {string}
+     */
     get subject(): string {
         return this._subject;
     }
 
+    /**
+     * @returns {string}
+     */
     get message(): string {
         return this._message;
     }
