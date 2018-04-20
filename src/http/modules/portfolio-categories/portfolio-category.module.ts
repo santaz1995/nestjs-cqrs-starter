@@ -9,6 +9,7 @@ import { GetPortfolioCategoryExecute } from "../../../application/query/portfoli
 import { UpdatePortfolioCategoryExecute } from "../../../application/command/portfolio-category/update-portfolio-category.execute";
 import { GetByIdPortfolioCategoryExecute } from "../../../application/query/portfolio-category/get-by-id-portfolio-category.execute";
 import { DeletePortfolioCategoryExecute } from "../../../application/command/portfolio-category/delete-portfolio-category.execute";
+import { StorePortfolioCategoryHandler } from '../../../application/event/category-feedback/store-portfolio-category.handler';
 
 @Module({
     modules: [CQRSModule],
@@ -48,5 +49,7 @@ export class PortfolioCategoryModule implements OnModuleInit {
             GetByIdPortfolioCategoryExecute,
             DeletePortfolioCategoryExecute
         ]);
+
+        this.event$.register([StorePortfolioCategoryHandler]);
     }
 }

@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { StorePortfolioCategoryEvent } from '../../application/event/category-feedback/store-portfolio-category.event';
 
 @Entity('portfolio-categories')
 export class PortfolioCategory extends AggregateRoot {
@@ -58,25 +59,8 @@ export class PortfolioCategory extends AggregateRoot {
      * Create event for save portfolio-category to query db
      * @param {PortfolioCategory} portfolioCategory
      */
-    public create(portfolioCategory: PortfolioCategory) {
-       /** TODO: Add event to save portfolio category to query db */
-    }
-
-    /**
-     * Create event for update portfolio-category to query db
-     * @param {number} id
-     * @param {PortfolioCategory} portfolioCategory
-     */
-    public update(id: number, portfolioCategory: PortfolioCategory) {
-       /** TODO: Add event to save portfolio category to query db */
-    }
-
-    /**
-     * Create event for delete portfolio-category to query db
-     * @param {number} id
-     */
-    public delete(id: number) {
-       /** TODO: Add event to save portfolio category to query db */
+    public store(portfolioCategory: PortfolioCategory) {
+        this.apply(new StorePortfolioCategoryEvent(portfolioCategory));
     }
 
     /**

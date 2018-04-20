@@ -1,6 +1,5 @@
 import { Controller, Post, Body, Get, Param, Put, Delete } from "@nestjs/common";
 import { CommandBus } from '@nestjs/cqrs';
-import { PortfolioCategoryDto } from "../../../infrastructures/dto/portfolio-category.dto";
 import { CreatePortfolioCategoryCommand } from "../../../application/command/portfolio-category/create-portfolio-category.command";
 import { GetPortfolioCategoryCommand } from "../../../application/query/portfolio-category/get-portfolio-category.command";
 import { UpdatePortfolioCategoryCommand } from "../../../application/command/portfolio-category/update-portfolio-category.command";
@@ -29,17 +28,21 @@ export class PortfolioCategoryController {
     }
 
     @Post()
-    public async store(@Body() dto: PortfolioCategoryDto) {
+    public async store(@Body() request) {
         await this.commandBus.execute(
-            new CreatePortfolioCategoryCommand(dto)
+            new CreatePortfolioCategoryCommand(
+                request.title
+            )
         );
     }
 
     @Put(':id')
-    public async update(@Param('id') id: number, @Body() dto: PortfolioCategoryDto) {
+    public async update(@Param('id') id: number, @Body() request) {
 
         await this.commandBus.execute(
-            new UpdatePortfolioCategoryCommand(id, dto)
+            new UpdatePortfolioCategoryCommand(
+                id,
+                request.title)
         );
     }
 

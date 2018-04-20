@@ -18,17 +18,17 @@ export class UpdatePortfolioCategoryExecute implements ICommandHandler<UpdatePor
      */
     async execute(command: UpdatePortfolioCategoryCommand, resolve: (value?) => void) {
 
+        resolve();
+
         const portfolioCategory = await this.portfolioCategoryRepository.byId(command.id);
 
-        portfolioCategory.title = command.dto.title;
+        portfolioCategory.title = command.title;
 
         const portfolioCategoryRegister = this.publisher.mergeObjectContext(
             await this.portfolioCategoryRepository.store(portfolioCategory),
         );
 
-        portfolioCategoryRegister.update(command.id, portfolioCategory);
+        portfolioCategoryRegister.store(portfolioCategory);
         portfolioCategoryRegister.commit();
-
-        resolve();
     }
 }

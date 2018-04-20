@@ -1,7 +1,26 @@
 import { ICommand } from '@nestjs/cqrs';
-import { PortfolioCategoryDto } from "../../../infrastructures/dto/portfolio-category.dto";
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class UpdatePortfolioCategoryCommand implements ICommand {
 
-    constructor(public readonly id: number, public readonly dto: PortfolioCategoryDto) {}
+    @IsNumber()
+    @IsNotEmpty()
+    readonly _id: number;
+
+    @IsString()
+    @IsNotEmpty()
+    readonly _title: string;
+
+    constructor(id: number, title: string) {
+        this._id = id;
+        this._title = title;
+    }
+
+    get id(): number {
+        return this._id;
+    }
+
+    get title(): string {
+        return this._title;
+    }
 }

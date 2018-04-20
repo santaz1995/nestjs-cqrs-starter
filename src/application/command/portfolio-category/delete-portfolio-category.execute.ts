@@ -18,6 +18,8 @@ export class DeletePortfolioCategoryExecute implements ICommandHandler<DeletePor
      */
     async execute(command: DeletePortfolioCategoryCommand, resolve: (value?) => void) {
 
+        resolve();
+
         const portfolioCategory = await this.portfolioCategoryRepository.byId(command.id);
 
         portfolioCategory.remove();
@@ -26,9 +28,7 @@ export class DeletePortfolioCategoryExecute implements ICommandHandler<DeletePor
             await this.portfolioCategoryRepository.store(portfolioCategory),
         );
 
-        portfolioCategoryRegister.delete(command.id);
+        portfolioCategoryRegister.store(portfolioCategory);
         portfolioCategoryRegister.commit();
-
-        resolve();
     }
 }

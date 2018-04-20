@@ -19,17 +19,18 @@ export class CreatePortfolioCategoryExecute implements ICommandHandler<CreatePor
      */
     async execute(command: CreatePortfolioCategoryCommand, resolve: (value?) => void) {
 
+        resolve();
+
         const portfolioCategory = PortfolioCategory.register(
-            command.dto.title,
+            command.title,
         );
 
         const portfolioCategoryRegister = this.publisher.mergeObjectContext(
             await this.portfolioCategoryRepository.store(portfolioCategory),
         );
 
-        portfolioCategoryRegister.create(portfolioCategory);
+        portfolioCategoryRegister.store(portfolioCategory);
         portfolioCategoryRegister.commit();
 
-        resolve();
     }
 }
