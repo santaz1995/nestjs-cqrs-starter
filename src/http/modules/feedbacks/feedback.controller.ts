@@ -1,6 +1,5 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
-import { FeedbackDto } from '../../../infrastructures/dto/feedback.dto';
 import { CreateFeedbackCommand } from '../../../application/command/feedback/create-feedback.command';
 import { GetFeedbacksCommand } from '../../../application/query/feedback/get-feedbacks.command';
 
@@ -18,10 +17,15 @@ export class FeedbackController {
     }
 
     @Post()
-    public async store(@Body() dto: FeedbackDto) {
+    public async store(@Body() request) {
 
         await this.commandBus.execute(
-            new CreateFeedbackCommand(dto)
+            new CreateFeedbackCommand(
+                request.email,
+                request.name,
+                request.subject,
+                request.message
+            )
         );
     }
 }

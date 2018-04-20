@@ -1,6 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { CreateFeedbackEvent } from '../../application/event/feedback/create-feedback.event';
+import { StoreFeedbackEvent } from '../../application/event/feedback/store-feedback.event';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('feedbacks')
@@ -84,7 +84,7 @@ export class Feedback extends AggregateRoot {
      * @param {Feedback} feedback
      */
     public create(feedback: Feedback) {
-        this.apply(new CreateFeedbackEvent(feedback));
+        this.apply(new StoreFeedbackEvent(feedback));
     }
 
     /**
