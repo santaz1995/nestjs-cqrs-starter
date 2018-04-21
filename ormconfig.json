@@ -10,8 +10,8 @@
     "synchronize": "all",
     "entities": [
       "src/domains/feedback/feedback.ts",
-      "src/domains/portfolio-category/portfolio-category.ts",
-      "src/domains/portfolio/portfolio.ts"
+      "src/domains/project-category/project-category.ts",
+      "src/domains/project/project.ts"
     ],
     "logging": false
   },
@@ -26,8 +26,8 @@
     "synchronize": "all",
     "entities": [
       "src/domains/feedback/feedback.ts",
-      "src/domains/portfolio-category/portfolio-category.ts",
-      "src/domains/portfolio/portfolio.ts"
+      "src/domains/project-category/project-category.ts",
+      "src/domains/project/project.ts"
     ],
     "logging": false
   },

@@ -6,7 +6,7 @@ export abstract class TypeOrmQueryRepository {
     protected entityManager: EntityManager;
 
     protected constructor() {
-        this.entityManager = getManager("query");
+        this.entityManager = getManager('query');
     }
 
     /**

@@ -4,9 +4,9 @@ import { ModuleRef } from '@nestjs/core';
 import { FeedbackController } from './feedback.controller';
 import { TypeOrmFeedbackCommandRepository } from '../../../infrastructures/domain/typeorm/command/type-orm-feedback.command.repository';
 import { TypeOrmFeedbackQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-feedback.query.repository';
-import { CreateFeedbackExecute } from "../../../application/command/feedback/create-feedback.execute";
-import { GetFeedbacksExecute } from "../../../application/query/feedback/get-feedbacks.execute";
-import { StoreFeedbackHandler } from "../../../application/event/feedback/store-feedback.handler";
+import { CreateFeedbackExecute } from '../../../application/command/feedback/create-feedback.execute';
+import { GetFeedbacksExecute } from '../../../application/query/feedback/get-feedbacks.execute';
+import { StoreFeedbackHandler } from '../../../application/event/feedback/store-feedback.handler';
 
 @Module({
     modules: [CQRSModule],
