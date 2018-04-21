@@ -5,6 +5,9 @@ export class StoreProjectEvent implements IEvent {
 
     readonly _project: Project;
 
+    /**
+     * @param {Project} project
+     */
     constructor(project: Project) {
         this._project = project;
 

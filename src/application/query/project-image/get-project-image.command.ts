@@ -1,6 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
 
-export class DeleteProjectCommand implements ICommand {
+export class GetProjectImageCommand implements ICommand {
 
     readonly _id: number;
 

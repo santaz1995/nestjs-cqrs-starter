@@ -76,7 +76,6 @@ export class ProjectCategory extends AggregateRoot {
      * @param {ProjectCategory} projectCategory
      */
     public store(projectCategory: ProjectCategory) {
-
         this.apply(new StoreProjectCategoryEvent(projectCategory));
     }
 

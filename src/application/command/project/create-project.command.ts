@@ -12,6 +12,13 @@ export class CreateProjectCommand implements ICommand {
 
     readonly _realestDate: Date;
 
+    /**
+     * @param {string} title
+     * @param {string} description
+     * @param {string} company
+     * @param {string} url
+     * @param {Date} realestDate
+     */
     constructor(title: string, description: string, company: string, url: string, realestDate: Date) {
         this._title = title;
         this._description = description;

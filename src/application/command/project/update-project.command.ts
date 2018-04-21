@@ -14,6 +14,14 @@ export class UpdateProjectCommand implements ICommand {
 
     readonly _realestDate: Date;
 
+    /**
+     * @param {number} id
+     * @param {string} title
+     * @param {string} description
+     * @param {string} company
+     * @param {string} url
+     * @param {Date} realestDate
+     */
     constructor(id: number, title: string, description: string, company: string, url: string, realestDate: Date) {
         this._id = id;
         this._title = title;

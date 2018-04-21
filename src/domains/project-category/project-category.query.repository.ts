@@ -3,12 +3,12 @@ import { ProjectCategory } from './project-category';
 export interface ProjectCategoryQueryRepository {
     
     /**
-     * @returns {Promise<Feedback[]>}
+     * @returns {Promise<ProjectCategory[]>}
      */
     getAll(): Promise<ProjectCategory[]>;
 
     /**
-     * @returns {Promise<Feedback[]>}
+     * @returns {Promise<ProjectCategory[]>}
      */
     getById(id: number): Promise<ProjectCategory>;
 
