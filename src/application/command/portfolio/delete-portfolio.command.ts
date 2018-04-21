@@ -1,6 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
 
-export class GetByIdPortfolioCategoryCommand implements ICommand {
+export class DeletePortfolioCommand implements ICommand {
 
     readonly _id: number;
 
@@ -8,9 +8,6 @@ export class GetByIdPortfolioCategoryCommand implements ICommand {
         this._id = id;
     }
 
-    /**
-     * @returns {number}
-     */
     get id(): number {
         return this._id;
     }

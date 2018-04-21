@@ -1,20 +1,43 @@
-[![Nest Logo](http://kamilmysliwiec.com/public/nest-logo.png)](http://kamilmysliwiec.com/)
+## Portfolio api project. Nodejs (nestjs) CQRS
 
-[Nest](https://github.com/kamilmysliwiec/nest) framework [CQRS module](https://github.com/kamilmysliwiec/nest-cqrs) usage example.
+### Starn project:
 
-## Installation
+- First step need start database; 
 
-```
-$ npm install
-```
-
-## Start
-
-```
-$ npm run start
+```bash
+docker-compose up -d
 ```
 
-## People
+- Copy ormconfig.example.json to ormconfig.json with your DB connection;
+- Install dependencies;
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
+```bash
+npm i
+```
+
+- Install globally typeorm for use typorm cli;
+
+```bash
+sudo npm i typeorm -g
+```
+
+- For start project realtime 
+
+```bash
+npm run start:live
+```
+
+- For compile .ts to .js files to ./dist/ folder;
+
+```bash
+npm run prestart
+```
+- Then start nodejs;
+
+```bash
+npm start
+```
+
+### TODO:
+- Write test;
+- Config migration
