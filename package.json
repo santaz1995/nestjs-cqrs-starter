@@ -1,8 +1,9 @@
 {
-  "name": "nest-cqrs-example",
+  "name": "nestjs-cqrs",
   "version": "1.0.0",
-  "description": "Nest CQRS module usage example",
+  "description": "Nestjs CQRS module usage",
   "license": "MIT",
+  "author": "Vyacheslav Zheltukhin",
   "scripts": {
     "start:live": "nodemon -e ts --watch index.js",
     "prestart": "tsc -p tsconfig.json",
