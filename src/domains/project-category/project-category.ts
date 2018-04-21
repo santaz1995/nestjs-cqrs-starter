@@ -1,7 +1,9 @@
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { StoreProjectCategoryEvent } from '../../application/event/project-category/store-project-category.event';
+import { Project } from '../project/project';
+
 
 @Entity('project-categories')
 export class ProjectCategory extends AggregateRoot {
@@ -40,6 +42,20 @@ export class ProjectCategory extends AggregateRoot {
     })
     @Exclude()
     deletedAt: Date;
+
+    @ManyToMany( () => Project, project => project.projectCategories)
+    @JoinTable({
+        name: 'projects_categories',
+        joinColumn: {
+            name: 'project_category_id',
+            referencedColumnName: 'id'
+        },
+        inverseJoinColumn: {
+            name: 'project_id',
+            referencedColumnName: 'id'
+        },
+    })
+    project: Project[];
 
     constructor(title: string, createdAt: Date) {
         super();

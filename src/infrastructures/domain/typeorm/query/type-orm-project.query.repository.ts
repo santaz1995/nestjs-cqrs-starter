@@ -11,7 +11,9 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
      * @returns {Promise<Project>}
      */
     public async getAll(): Promise<Project[]> {
-        return this.createQueryBuilder().getMany();
+        return this.createQueryBuilder()
+            .leftJoinAndSelect('p.projectCategories', 'pc')
+            .getMany();
     }
 
     /**
