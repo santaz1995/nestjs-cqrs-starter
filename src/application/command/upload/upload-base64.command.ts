@@ -1,5 +1,4 @@
 import { ICommand } from '@nestjs/cqrs';
-import * as path from 'path';
 
 export class UploadBase64Command implements ICommand {
 
@@ -27,6 +26,6 @@ export class UploadBase64Command implements ICommand {
      * @returns string
      */
     get folderPath(): string {
-        return path.resolve(this._folderPath);
+        return this._folderPath;
     }
 }
