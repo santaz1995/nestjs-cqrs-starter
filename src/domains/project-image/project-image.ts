@@ -1,7 +1,8 @@
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { StoreProjectImageEvent } from '../../application/event/project-image/store-project-image.event';
+import { Project } from '../project/project';
 
 @Entity('project-images')
 export class ProjectImage extends AggregateRoot {
@@ -11,7 +12,7 @@ export class ProjectImage extends AggregateRoot {
 
     @Column({
         name: 'project_id',
-        type: 'number',
+        type: 'integer',
         nullable: false
     })
     projectId: number;
@@ -47,6 +48,10 @@ export class ProjectImage extends AggregateRoot {
     })
     @Exclude()
     deletedAt: Date;
+
+    @ManyToOne( () => Project, project => project.projectImages)
+    @JoinColumn({name: 'project_id', referencedColumnName: 'id'})
+    project: Project;
 
     constructor(projectId: number, imagePath: string, createdAt: Date) {
         super();

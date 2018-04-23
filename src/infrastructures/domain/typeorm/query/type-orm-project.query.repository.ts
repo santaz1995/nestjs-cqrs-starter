@@ -13,6 +13,7 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
     public async getAll(): Promise<Project[]> {
         return this.createQueryBuilder()
             .leftJoinAndSelect('p.projectCategories', 'pc')
+            .leftJoinAndSelect('p.projectImages', 'pi')
             .getMany();
     }
 
