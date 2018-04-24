@@ -1,4 +1,4 @@
-## Portfolio api project. Nodejs (nestjs) CQRS
+## nestjs-cqrs-starter
 
 ### Starn project:
 
@@ -40,4 +40,4 @@ npm start
 
 ### TODO:
 - Write test;
-- Config migration
+- Config migration"# portfolio-ui" 

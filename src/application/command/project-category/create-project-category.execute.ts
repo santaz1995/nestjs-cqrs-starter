@@ -13,7 +13,7 @@ export class CreateProjectCategoryExecute implements ICommandHandler<CreateProje
     }
 
     /**
-     * @param {CreateFeedbackCommand} command
+     * @param {CreateProjectCategoryCommand} command
      * @param {(value?) => void} resolve
      * @returns {Promise<void>}
      */
