@@ -28,6 +28,14 @@ export class Project extends AggregateRoot {
     description: string;
 
     @Column({
+        name: 'slug',
+        type: 'varchar',
+        length: 255,
+        nullable: false
+    })
+    slug: string;
+
+    @Column({
         name: 'company',
         type: 'varchar',
         length: 255,
@@ -92,7 +100,7 @@ export class Project extends AggregateRoot {
     @OneToMany( () => ProjectImage, projectImage => projectImage.project)
     projectImages: ProjectImage[];
 
-    constructor(title: string, description: string, company: string, url: string, realestDate: Date, createdAt: Date) {
+    constructor(title: string, description: string, company: string, url: string, realestDate: Date, slug: string, createdAt: Date) {
         super();
         this.title = title;
         this.description = description;
@@ -108,10 +116,11 @@ export class Project extends AggregateRoot {
      * @param {string} company
      * @param {string} url
      * @param {Date} realestDate
+     * @param {string} slug
      * @returns {Project}
      */
-    static register(title: string, description: string, company: string, url: string, realestDate: Date): Project {
-        return new Project(title, description, company, url, realestDate, new Date());
+    static register(title: string, description: string, company: string, url: string, realestDate: Date, slug: string): Project {
+        return new Project(title, description, company, url, realestDate, slug, new Date());
     }
 
     /**

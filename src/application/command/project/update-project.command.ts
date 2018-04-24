@@ -1,4 +1,5 @@
 import { ICommand } from '@nestjs/cqrs';
+import * as slug from  'slug';
 
 export class UpdateProjectCommand implements ICommand {
 
@@ -13,6 +14,8 @@ export class UpdateProjectCommand implements ICommand {
     readonly _url: string;
 
     readonly _realestDate: Date;
+
+    readonly _slug: string;
 
     /**
      * @param {number} id
@@ -29,6 +32,7 @@ export class UpdateProjectCommand implements ICommand {
         this._company = company;
         this._url = url;
         this._realestDate = realestDate;
+        this._slug = slug(title);
     }
 
     /**
@@ -71,5 +75,12 @@ export class UpdateProjectCommand implements ICommand {
      */
     get realestDate(): Date {
         return this._realestDate;
+    }
+
+    /**
+     * @returns {string}
+     */
+    get slug(): string {
+        return this._slug;
     }
 }
