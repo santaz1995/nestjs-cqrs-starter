@@ -11,6 +11,7 @@ npm-debug.log
 
 # dist
 /dist
+/public/uploads/*
 
 # tests
 /test

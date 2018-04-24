@@ -29,8 +29,7 @@ export class FeedbackModule implements OnModuleInit {
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus,
-        private readonly event$: EventBus,
-    ) {
+        private readonly event$: EventBus) {
     }
 
     onModuleInit() {

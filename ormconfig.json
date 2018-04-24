@@ -11,6 +11,7 @@
     "entities": [
       "src/domains/feedback/feedback.ts",
       "src/domains/project-category/project-category.ts",
+      "src/domains/project-image/project-image.ts",
       "src/domains/project/project.ts"
     ],
     "logging": false
@@ -27,6 +28,7 @@
     "entities": [
       "src/domains/feedback/feedback.ts",
       "src/domains/project-category/project-category.ts",
+      "src/domains/project-image/project-image.ts",
       "src/domains/project/project.ts"
     ],
     "logging": false

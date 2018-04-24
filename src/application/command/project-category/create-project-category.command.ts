@@ -1,16 +1,19 @@
 import { ICommand } from '@nestjs/cqrs';
-import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateProjectCategoryCommand implements ICommand {
 
-    @IsString()
-    @IsNotEmpty()
     readonly _title: string;
 
+    /**
+     * @param {string} title
+     */
     constructor(title: string) {
         this._title = title;
     }
 
+    /**
+     * @returns {string}
+     */
     get title(): string {
         return this._title;
     }

@@ -5,6 +5,9 @@ export class StoreProjectCategoryEvent implements IEvent {
 
     readonly _projectCategory: ProjectCategory;
 
+    /**
+     * @param {ProjectCategory} projectCategory
+     */
     constructor(projectCategory: ProjectCategory) {
         this._projectCategory = projectCategory;
 

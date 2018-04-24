@@ -1,24 +1,21 @@
 import { ICommand } from '@nestjs/cqrs';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateFeedbackCommand implements ICommand {
 
-    @IsEmail()
-    @IsNotEmpty()
     readonly _email: string;
 
-    @IsString()
-    @IsNotEmpty()
     readonly _name: string;
 
-    @IsString()
-    @IsNotEmpty()
     readonly _subject: string;
 
-    @IsString()
-    @IsNotEmpty()
     readonly _message: string;
 
+    /**
+     * @param {string} email
+     * @param {string} name
+     * @param {string} subject
+     * @param {string} message
+     */
     constructor(email: string, name: string, subject: string, message: string) {
         this._email = email;
         this._name = name;
