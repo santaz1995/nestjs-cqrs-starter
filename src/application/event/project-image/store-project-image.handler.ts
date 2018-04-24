@@ -10,6 +10,10 @@ export class StoreProjectImageHandler implements IEventHandler<StoreProjectImage
         @Inject('ProjectImageQueryRepository') private projectImageRepository: ProjectImageQueryRepository) {
     }
 
+    /**
+     * @param {StoreProjectImageEvent} event
+     * @returns {Promise<void>}
+     */
     async handle(event: StoreProjectImageEvent) {
         await this.projectImageRepository.store(event.projectImage);
     }

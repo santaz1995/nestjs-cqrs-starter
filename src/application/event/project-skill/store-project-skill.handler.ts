@@ -10,6 +10,10 @@ export class StoreProjectSkillHandler implements IEventHandler<StoreProjectSkill
         @Inject('ProjectSkillQueryRepository') private projectSkillRepository: ProjectSkillQueryRepository) {
     }
 
+    /**
+     * @param {StoreProjectSkillEvent} event
+     * @returns {Promise<void>}
+     */
     async handle(event: StoreProjectSkillEvent) {
         await this.projectSkillRepository.store(event.projectSkill);
     }

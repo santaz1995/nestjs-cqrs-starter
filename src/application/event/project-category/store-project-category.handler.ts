@@ -10,6 +10,10 @@ export class StoreProjectCategoryHandler implements IEventHandler<StoreProjectCa
         @Inject('ProjectCategoryQueryRepository') private projectCategoryRepository: ProjectCategoryQueryRepository) {
     }
 
+    /**
+     * @param {StoreProjectCategoryEvent} event
+     * @returns {Promise<void>}
+     */
     async handle(event: StoreProjectCategoryEvent) {
         await this.projectCategoryRepository.store(event.projectCategory);
     }

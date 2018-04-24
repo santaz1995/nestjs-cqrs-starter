@@ -5,7 +5,6 @@ import { ProjectSkillController } from './project-skill.controller';
 import { TypeOrmProjectSkillQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-project-skill.query.repository';
 import { TypeOrmProjectSkillCommandRepository } from '../../../infrastructures/domain/typeorm/command/type-orm-project-skill.command.repository';
 import { CreateProjectSkillExecute } from '../../../application/command/project-skill/create-project-skill.execute';
-import { UpdateProjectSkillExecute } from '../../../application/command/project-skill/update-project-skill.execute';
 import { DeleteProjectSkillExecute } from '../../../application/command/project-skill/delete-project-skill.execute';
 import { GetProjectSkillExecute } from '../../../application/query/project-skill/get-project-skill.execute';
 import { GetByIdProjectSkillExecute } from '../../../application/query/project-skill/get-by-id-project-skill.execute';
@@ -27,7 +26,6 @@ import { StoreProjectSkillHandler } from '../../../application/event/project-ski
          * Command
          */
         CreateProjectSkillExecute,
-        UpdateProjectSkillExecute,
         DeleteProjectSkillExecute,
 
         /**
@@ -55,7 +53,6 @@ export class ProjectSkillModule implements OnModuleInit {
 
         this.command$.register([
             CreateProjectSkillExecute,
-            UpdateProjectSkillExecute,
             DeleteProjectSkillExecute,
             GetProjectSkillExecute,
             GetByIdProjectSkillExecute,

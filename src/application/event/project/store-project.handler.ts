@@ -10,6 +10,10 @@ export class StoreProjectHandler implements IEventHandler<StoreProjectEvent> {
         @Inject('ProjectQueryRepository') private projectRepository: ProjectQueryRepository) {
     }
 
+    /**
+     * @param {StoreProjectEvent} event
+     * @returns {Promise<void>}
+     */
     async handle(event: StoreProjectEvent) {
         await this.projectRepository.store(event.project);
     }

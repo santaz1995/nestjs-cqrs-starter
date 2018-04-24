@@ -10,6 +10,10 @@ export class StoreFeedbackHandler implements IEventHandler<StoreFeedbackEvent> {
         @Inject('FeedbackQueryRepository') private feedbackRepository: FeedbackQueryRepository) {
     }
 
+    /**
+     * @param {StoreFeedbackEvent} feedback
+     * @returns {Promise<void>}
+     */
     async handle(feedback: StoreFeedbackEvent) {
         await this.feedbackRepository.store(feedback.feedback);
     }

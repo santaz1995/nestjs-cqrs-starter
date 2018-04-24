@@ -1,8 +1,9 @@
 import { Exclude } from 'class-transformer';
 import { AggregateRoot } from '@nestjs/cqrs';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { StoreProjectSkillEvent } from '../../application/event/project-skill/store-project-skill.event';
 
-@Entity('project-categories')
+@Entity('project-skills')
 export class ProjectSkill extends AggregateRoot {
 
     @PrimaryGeneratedColumn()
@@ -59,7 +60,7 @@ export class ProjectSkill extends AggregateRoot {
      * @param {ProjectSkill} projectSkill
      */
     public store(projectSkill: ProjectSkill) {
-
+        this.apply(new StoreProjectSkillEvent(projectSkill));
     }
 
     /**
