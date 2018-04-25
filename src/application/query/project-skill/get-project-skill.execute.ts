@@ -17,6 +17,6 @@ export class GetProjectSkillExecute implements ICommandHandler<GetProjectSkillCo
      */
     async execute(command: GetProjectSkillCommand, resolve: (value?) => void) {
 
-        resolve(await this.projectSkillRepository.getAll());
+        resolve(this.projectSkillRepository.getAll());
     }
 }

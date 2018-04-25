@@ -3,6 +3,7 @@ import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectQueryRepository } from '../../../../domains/project/project.query.repository';
 import { Project } from '../../../../domains/project/project';
+import { ProjectNotFoundException } from '../../../../domains/project/project-not-found.exception';
 
 @EntityRepository()
 export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implements ProjectQueryRepository {
@@ -10,7 +11,7 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
     /**
      * @returns {Promise<Project>}
      */
-    public async getAll(): Promise<Project[]> {
+    public getAll(): Promise<Project[]> {
         return this.createQueryBuilder()
             .leftJoinAndSelect('p.projectCategories', 'pc')
             .leftJoinAndSelect('p.projectImages', 'pi')
@@ -21,8 +22,15 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
      * @param {number} id
      * @returns {Promise<Project>}
      */
-    public async getById(id: number): Promise<Project> {
-        return this.createQueryBuilder().andWhere('p.id = :id').setParameter('id', id).getOne();
+    public getById(id: number): Promise<Project> {
+        return this.createQueryBuilder()
+            .andWhere('p.id = :id')
+            .setParameter('id', id)
+            .getOne()
+            .then((project: Project) => {
+                if (!project) throw ProjectNotFoundException.fromId(id);
+                return project;
+            });
     }
 
     /**

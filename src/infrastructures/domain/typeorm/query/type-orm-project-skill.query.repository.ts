@@ -3,6 +3,7 @@ import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectSkillQueryRepository } from '../../../../domains/project-skill/project-skill.query.repository';
 import { ProjectSkill } from '../../../../domains/project-skill/project-skill';
+import { ProjectSkillNotFoundException } from '../../../../domains/project-skill/project-skill-not-found.exception';
 
 @EntityRepository()
 export class TypeOrmProjectSkillQueryRepository extends TypeOrmQueryRepository implements ProjectSkillQueryRepository {
@@ -10,7 +11,7 @@ export class TypeOrmProjectSkillQueryRepository extends TypeOrmQueryRepository i
     /**
      * @returns {Promise<ProjectSkill>}
      */
-    public async getAll(): Promise<ProjectSkill[]> {
+    public getAll(): Promise<ProjectSkill[]> {
         return this.createQueryBuilder().getMany();
     }
 
@@ -18,8 +19,15 @@ export class TypeOrmProjectSkillQueryRepository extends TypeOrmQueryRepository i
      * @param {number} id
      * @returns {Promise<ProjectSkill>}
      */
-    public async getById(id: number): Promise<ProjectSkill> {
-        return this.createQueryBuilder().andWhere('ps.id = :id').setParameter('id', id).getOne();
+    public getById(id: number): Promise<ProjectSkill> {
+        return this.createQueryBuilder()
+            .andWhere('ps.id = :id')
+            .setParameter('id', id)
+            .getOne()
+            .then((projectSkill: ProjectSkill) => {
+                if (!projectSkill) throw ProjectSkillNotFoundException.fromId(id);
+                return projectSkill;
+            });
     }
 
     /**

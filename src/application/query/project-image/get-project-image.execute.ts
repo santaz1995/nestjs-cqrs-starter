@@ -17,6 +17,6 @@ export class GetProjectImageExecute implements ICommandHandler<GetProjectImageCo
      */
     async execute(command: GetProjectImageCommand, resolve: (value?) => void) {
 
-        resolve(await this.projectImageRepository.getAll(command.id));
+        resolve(this.projectImageRepository.getAll(command.id));
     }
 }

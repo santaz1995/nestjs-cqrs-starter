@@ -3,6 +3,7 @@ import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectImageQueryRepository } from '../../../../domains/project-image/project-image.query.repository';
 import { ProjectImage } from '../../../../domains/project-image/project-image';
+import { ProjectImageNotFoundException } from '../../../../domains/project-image/project-image-not-found.exception';
 
 @EntityRepository()
 export class TypeOrmProjectImageQueryRepository extends TypeOrmQueryRepository implements ProjectImageQueryRepository {
@@ -10,7 +11,7 @@ export class TypeOrmProjectImageQueryRepository extends TypeOrmQueryRepository i
     /**
      * @returns {Promise<ProjectCategory>}
      */
-    public async getAll(id: number): Promise<ProjectImage[]> {
+    public getAll(id: number): Promise<ProjectImage[]> {
         return this.createQueryBuilder().andWhere('pi.projectId = :id').getMany();
     }
 
@@ -18,8 +19,15 @@ export class TypeOrmProjectImageQueryRepository extends TypeOrmQueryRepository i
      * @param {number} id
      * @returns {Promise<ProjectCategory>}
      */
-    public async getById(id: number): Promise<ProjectImage> {
-        return this.createQueryBuilder().andWhere('pi.id = :id').setParameter('id', id).getOne();
+    public getById(id: number): Promise<ProjectImage> {
+        return this.createQueryBuilder()
+            .andWhere('pi.id = :id')
+            .setParameter('id', id)
+            .getOne()
+            .then((projectImage: ProjectImage) => {
+                if (!projectImage) throw ProjectImageNotFoundException.fromId(id);
+                return projectImage;
+            });
     }
 
     /**

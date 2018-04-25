@@ -17,6 +17,6 @@ export class GetByIdProjectCategoryExecute implements ICommandHandler<GetByIdPro
      */
     async execute(command: GetByIdProjectCategoryCommand, resolve: (value?) => void) {
 
-        resolve(await this.projectCategoryRepository.getById(command.id));
+        resolve(this.projectCategoryRepository.getById(command.id));
     }
 }
