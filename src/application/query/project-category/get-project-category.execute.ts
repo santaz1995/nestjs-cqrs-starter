@@ -17,6 +17,6 @@ export class GetProjectCategoryExecute implements ICommandHandler<GetProjectCate
      */
     async execute(command: GetProjectCategoryCommand, resolve: (value?) => void) {
 
-        resolve(await this.projectCategoryRepository.getAll());
+        resolve(this.projectCategoryRepository.getAll());
     }
 }

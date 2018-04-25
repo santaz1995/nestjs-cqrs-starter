@@ -17,6 +17,6 @@ export class GetProjectExecute implements ICommandHandler<GetProjectCommand> {
      */
     async execute(command: GetProjectCommand, resolve: (value?) => void) {
 
-        resolve(await this.projectRepository.getAll());
+        resolve(this.projectRepository.getAll());
     }
 }
