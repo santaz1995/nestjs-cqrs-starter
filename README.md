@@ -39,5 +39,8 @@ npm start
 ```
 
 ### TODO:
+- Exceptions;
+- Validations;
+- OAUTH;
 - Write test;
-- Config migration"# portfolio-ui" 
+- Config migration.
