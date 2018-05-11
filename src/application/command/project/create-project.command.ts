@@ -1,5 +1,6 @@
 import { ICommand } from '@nestjs/cqrs';
 import * as slug from  'slug';
+import { ProjectCategory } from '../../../domains/project-category/project-category';
 
 export class CreateProjectCommand implements ICommand {
 
@@ -15,20 +16,24 @@ export class CreateProjectCommand implements ICommand {
 
     readonly _slug: string;
 
+    readonly _projectCategories: ProjectCategory[];
+
     /**
      * @param {string} title
      * @param {string} description
      * @param {string} company
      * @param {string} url
      * @param {Date} realestDate
+     * @param {ProjectCategory[]} projectCategories
      */
-    constructor(title: string, description: string, company: string, url: string, realestDate: Date) {
+    constructor(title: string, description: string, company: string, url: string, realestDate: Date, projectCategories: ProjectCategory[]) {
         this._title = title;
         this._description = description;
         this._company = company;
         this._url = url;
         this._realestDate = realestDate;
         this._slug = slug(title);
+        this._projectCategories = projectCategories;
     }
 
     /**
@@ -71,5 +76,12 @@ export class CreateProjectCommand implements ICommand {
      */
     get slug(): string {
         return this._slug;
+    }
+
+    /**
+     * @returns {ProjectCategory[]}
+     */
+    get projectCategories(): ProjectCategory[] {
+        return this._projectCategories;
     }
 }

@@ -15,6 +15,7 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
         return this.createQueryBuilder()
             .leftJoinAndSelect('p.projectCategories', 'pc')
             .leftJoinAndSelect('p.projectImages', 'pi')
+            .leftJoinAndSelect('p.projectSkills', 'ps')
             .getMany();
     }
 
@@ -26,6 +27,7 @@ export class TypeOrmProjectQueryRepository extends TypeOrmQueryRepository implem
         return this.createQueryBuilder()
             .andWhere('p.id = :id')
             .setParameter('id', id)
+            .leftJoinAndSelect('p.projectSkills', 'ps')
             .getOne()
             .then((project: Project) => {
                 if (!project) throw ProjectNotFoundException.fromId(id);

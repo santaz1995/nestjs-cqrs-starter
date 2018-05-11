@@ -28,8 +28,8 @@ export class CreateProjectExecute implements ICommandHandler<CreateProjectComman
             command.url,
             command.realestDate,
             command.slug,
+            command.projectCategories,
         );
-
         const feedbackRegister = this.publisher.mergeObjectContext(
             await this.projectRepository.store(project),
         );

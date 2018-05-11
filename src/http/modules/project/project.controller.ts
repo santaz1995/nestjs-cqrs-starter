@@ -29,6 +29,7 @@ export class ProjectController {
 
     @Post()
     public async store(@Body() request) {
+
         await this.commandBus.execute(
             new CreateProjectCommand(
                 request.title,
@@ -36,6 +37,7 @@ export class ProjectController {
                 request.company,
                 request.url,
                 request.realestDate,
+                request.projectCategories,
             )
         );
     }
@@ -51,6 +53,7 @@ export class ProjectController {
                 request.company,
                 request.url,
                 request.realestDate,
+                request.projectCategories,
             )
         );
     }

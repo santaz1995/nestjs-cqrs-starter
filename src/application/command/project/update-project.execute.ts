@@ -28,6 +28,7 @@ export class UpdateProjectExecute implements ICommandHandler<UpdateProjectComman
         project.url = command.url;
         project.realestDate = command.realestDate;
         project.slug = command.slug;
+        project.projectCategories = command.projectCategories;
 
         const projectRegister = this.publisher.mergeObjectContext(
             await this.projectRepository.store(project),

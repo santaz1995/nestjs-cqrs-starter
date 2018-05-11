@@ -55,7 +55,7 @@ export class ProjectCategory extends AggregateRoot {
             referencedColumnName: 'id'
         },
     })
-    project: Project[];
+    projects: Project[];
 
     constructor(title: string, createdAt: Date) {
         super();

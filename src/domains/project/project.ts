@@ -4,6 +4,7 @@ import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColum
 import { StoreProjectEvent } from '../../application/event/project/store-project.event';
 import { ProjectCategory } from '../project-category/project-category';
 import { ProjectImage } from '../project-image/project-image';
+import { ProjectSkill } from '../project-skill/project-skill';
 
 @Entity('projects')
 export class Project extends AggregateRoot {
@@ -83,7 +84,7 @@ export class Project extends AggregateRoot {
     @Exclude()
     deletedAt: Date;
 
-    @ManyToMany( () => ProjectCategory, projectCategory => projectCategory.project)
+    @ManyToMany(() => ProjectCategory, projectCategory => projectCategory.projects)
     @JoinTable({
         name: 'projects_categories',
         joinColumn: {
@@ -97,16 +98,43 @@ export class Project extends AggregateRoot {
     })
     projectCategories: ProjectCategory[];
 
-    @OneToMany( () => ProjectImage, projectImage => projectImage.project)
+    @ManyToMany(() => ProjectSkill, projectSkill => projectSkill.projects, {
+        cascadeInsert: true,
+        cascadeUpdate: true,
+        eager: false
+    })
+    @JoinTable({
+        name: 'projects_skills',
+        joinColumn: {
+            name: 'project_id',
+            referencedColumnName: 'id'
+        },
+        inverseJoinColumn: {
+            name: 'project_skill_id',
+            referencedColumnName: 'id'
+        }
+    })
+    projectSkills: ProjectCategory[];
+
+    @OneToMany(() => ProjectImage, projectImage => projectImage.project)
     projectImages: ProjectImage[];
 
-    constructor(title: string, description: string, company: string, url: string, realestDate: Date, slug: string, createdAt: Date) {
+    constructor(title: string,
+                description: string,
+                company: string,
+                url: string,
+                realestDate: Date,
+                slug: string,
+                projectCategories: ProjectCategory[],
+                createdAt: Date) {
         super();
         this.title = title;
         this.description = description;
         this.company = company;
         this.url = url;
         this.realestDate = realestDate;
+        this.slug = slug;
+        this.projectCategories = projectCategories;
         this.createdAt = createdAt;
     }
 
@@ -117,10 +145,17 @@ export class Project extends AggregateRoot {
      * @param {string} url
      * @param {Date} realestDate
      * @param {string} slug
+     * @param {ProjectCategory[]} projectCategories
      * @returns {Project}
      */
-    static register(title: string, description: string, company: string, url: string, realestDate: Date, slug: string): Project {
-        return new Project(title, description, company, url, realestDate, slug, new Date());
+    static register(title: string,
+                    description: string,
+                    company: string,
+                    url: string,
+                    realestDate: Date,
+                    slug: string,
+                    projectCategories: ProjectCategory[]): Project {
+        return new Project(title, description, company, url, realestDate, slug, projectCategories, new Date());
     }
 
     /**
