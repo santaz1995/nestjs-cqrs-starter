@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateFeedbackCommand } from '../../../application/command/feedback/create-feedback.command';
 import { GetFeedbacksCommand } from '../../../application/query/feedback/get-feedbacks.command';
+import { GetByIdFeedbackCommand } from '../../../application/query/feedback/get-by-id-feedback.command';
 
 @Controller('feedbacks')
 export class FeedbackController {
@@ -13,6 +14,14 @@ export class FeedbackController {
 
         return await this.commandBus.execute(
             new GetFeedbacksCommand()
+        );
+    }
+
+    @Get(':id')
+    public async getById(@Param('id') id: number) {
+
+        return await this.commandBus.execute(
+            new GetByIdFeedbackCommand(id)
         );
     }
 
