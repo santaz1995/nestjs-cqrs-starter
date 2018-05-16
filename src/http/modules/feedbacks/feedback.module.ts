@@ -7,6 +7,7 @@ import { TypeOrmFeedbackQueryRepository } from '../../../infrastructures/domain/
 import { CreateFeedbackExecute } from '../../../application/command/feedback/create-feedback.execute';
 import { GetFeedbacksExecute } from '../../../application/query/feedback/get-feedbacks.execute';
 import { StoreFeedbackHandler } from '../../../application/event/feedback/store-feedback.handler';
+import { GetByIdFeedbackExecute } from '../../../application/query/feedback/get-by-id-feedback.execute';
 
 @Module({
     modules: [CQRSModule],
@@ -22,6 +23,7 @@ import { StoreFeedbackHandler } from '../../../application/event/feedback/store-
         },
         CreateFeedbackExecute,
         GetFeedbacksExecute,
+        GetByIdFeedbackExecute,
         StoreFeedbackHandler
     ],
 })
@@ -36,7 +38,7 @@ export class FeedbackModule implements OnModuleInit {
         this.command$.setModuleRef(this.moduleRef);
         this.event$.setModuleRef(this.moduleRef);
 
-        this.command$.register([CreateFeedbackExecute, GetFeedbacksExecute]);
+        this.command$.register([CreateFeedbackExecute, GetFeedbacksExecute, GetByIdFeedbackExecute]);
         
         this.event$.register([StoreFeedbackHandler]);
     }

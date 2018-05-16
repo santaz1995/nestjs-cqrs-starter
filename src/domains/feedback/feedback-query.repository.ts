@@ -8,6 +8,11 @@ export interface FeedbackQueryRepository {
     getAll(): Promise<Feedback[]>;
 
     /**
+     * @returns {Promise<Feedback[]>}
+     */
+    getById(id: number): Promise<Feedback>;
+
+    /**
      * @param {Feedback} feedback
      */
     store(feedback: Feedback): Promise<Feedback>;

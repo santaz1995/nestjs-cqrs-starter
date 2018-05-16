@@ -3,6 +3,7 @@ import { ObjectType } from 'typeorm/common/ObjectType';
 import { Feedback } from '../../../../domains/feedback/feedback';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { FeedbackQueryRepository } from '../../../../domains/feedback/feedback-query.repository';
+import { FeedbackNotFoundException } from '../../../../domains/feedback/feedback-not-found.exception';
 
 @EntityRepository()
 export class TypeOrmFeedbackQueryRepository extends TypeOrmQueryRepository implements FeedbackQueryRepository {
@@ -12,6 +13,21 @@ export class TypeOrmFeedbackQueryRepository extends TypeOrmQueryRepository imple
      */
     public async getAll(): Promise<Feedback[]> {
         return this.createQueryBuilder().getMany();
+    }
+
+    /**
+     * @param {number} id
+     * @returns {Promise<Feedback>}
+     */
+    public getById(id: number): Promise<Feedback> {
+        return this.createQueryBuilder()
+            .andWhere('f.id = :id')
+            .setParameter('id', id)
+            .getOne()
+            .then((feedback: Feedback) => {
+                if (!feedback) throw FeedbackNotFoundException.fromId(id);
+                return feedback;
+            });
     }
 
     /**
