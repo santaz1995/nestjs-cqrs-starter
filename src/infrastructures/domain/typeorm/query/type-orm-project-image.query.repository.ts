@@ -12,7 +12,7 @@ export class TypeOrmProjectImageQueryRepository extends TypeOrmQueryRepository i
      * @returns {Promise<ProjectCategory>}
      */
     public getAll(id: number): Promise<ProjectImage[]> {
-        return this.createQueryBuilder().andWhere('pi.projectId = :id').getMany();
+        return this.createQueryBuilder().andWhere('pi.projectId = :id').setParameter('id', id).getMany();
     }
 
     /**
