@@ -15,13 +15,14 @@ export class UploadBase64Execute implements ICommandHandler<UploadBase64Command>
 
         const image = command.file.replace(/^data:image\/\w+;base64,/, '');
         const imageExt = command.file.split(';')[0].match(/jpeg|png|gif/)[0];
-        const imagePath = `${command.folderPath}/${uuidv4()}.${imageExt}`;
+        const imageName = `${uuidv4()}.${imageExt}`;
+        const imagePath = `${command.folderPath}/${imageName}`;
 
         fs.writeFile(`${command.folderPath}/${uuidv4()}.${imageExt}`, image, {encoding: 'base64'}, () => {
             /** TODO: Handle error */
         });
 
-        resolve({
+        resolve ({
             message: 'Image has been uploaded successfully.',
             imagePath: imagePath,
         });
