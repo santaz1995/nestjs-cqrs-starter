@@ -4,7 +4,7 @@ import { GetProjectImageCommand } from '../../../application/query/project-image
 import { CreateProjectImageCommand } from '../../../application/command/project-image/create-project-image.command';
 import { DeleteProjectImageCommand } from '../../../application/command/project-image/delete-project-image.command';
 
-@Controller('project/:id/images')
+@Controller('projects/:id/images')
 export class ProjectImageController {
 
     constructor(private readonly commandBus: CommandBus) {
@@ -13,16 +13,19 @@ export class ProjectImageController {
     @Get()
     public async getAll(@Param('id') id: number) {
 
+        /**
+         * TODO: Add serialize image data
+         */
         return await this.commandBus.execute(
             new GetProjectImageCommand(id)
         );
     }
 
     @Post()
-    public async store(@Body() request) {
+    public async store(@Param('id') id: number, @Body() request) {
         await this.commandBus.execute(
             new CreateProjectImageCommand(
-                request.projectId,
+                id,
                 request.imagePath,
             )
         );
