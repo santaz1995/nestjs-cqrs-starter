@@ -7,7 +7,7 @@ import { ProjectSkillCommandRepository } from '../../../domains/project-skill/pr
 export class UpdateProjectSkillExecute implements ICommandHandler<UpdateProjectSkillCommand> {
 
     constructor(
-        @Inject('UpdateProjectSkillCommand') private projectSkillRepository: ProjectSkillCommandRepository,
+        @Inject('ProjectSkillCommandRepository') private projectSkillRepository: ProjectSkillCommandRepository,
         private readonly publisher: EventPublisher) {
     }
 

@@ -9,6 +9,7 @@ import { DeleteProjectSkillExecute } from '../../../application/command/project-
 import { GetProjectSkillExecute } from '../../../application/query/project-skill/get-project-skill.execute';
 import { GetByIdProjectSkillExecute } from '../../../application/query/project-skill/get-by-id-project-skill.execute';
 import { StoreProjectSkillHandler } from '../../../application/event/project-skill/store-project-skill.handler';
+import { UpdateProjectSkillExecute } from '../../../application/command/project-skill/update-project-skill.execute';
 
 @Module({
     modules: [CQRSModule],
@@ -26,6 +27,7 @@ import { StoreProjectSkillHandler } from '../../../application/event/project-ski
          * Command
          */
         CreateProjectSkillExecute,
+        UpdateProjectSkillExecute,
         DeleteProjectSkillExecute,
 
         /**
@@ -53,6 +55,7 @@ export class ProjectSkillModule implements OnModuleInit {
 
         this.command$.register([
             CreateProjectSkillExecute,
+            UpdateProjectSkillExecute,
             DeleteProjectSkillExecute,
             GetProjectSkillExecute,
             GetByIdProjectSkillExecute,

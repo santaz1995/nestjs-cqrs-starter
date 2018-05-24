@@ -52,7 +52,7 @@ export class UploadController {
     }))
     public async multipart(@UploadedFile() file, @Req() request) {
 
-        const imagePath = 'uploads/' + file.filename;
+        const imagePath = '/uploads/' + file.filename;
 
         return {
             message: 'Image has been uploaded successfully.',
