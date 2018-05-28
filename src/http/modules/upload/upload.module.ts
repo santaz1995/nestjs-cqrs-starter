@@ -12,6 +12,11 @@ import { UploadBase64Execute } from '../../../application/command/upload/upload-
     ],
 })
 export class UploadModule implements OnModuleInit {
+
+    /**
+     * @param {ModuleRef} moduleRef
+     * @param {CommandBus} command$
+     */
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus) {

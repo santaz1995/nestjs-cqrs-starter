@@ -43,6 +43,12 @@ import { StoreProjectHandler } from '../../../application/event/project/store-pr
     ],
 })
 export class ProjectModule implements OnModuleInit {
+
+    /**
+     * @param {ModuleRef} moduleRef
+     * @param {CommandBus} command$
+     * @param {EventBus} event$
+     */
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus,

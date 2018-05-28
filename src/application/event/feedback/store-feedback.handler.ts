@@ -11,10 +11,10 @@ export class StoreFeedbackHandler implements IEventHandler<StoreFeedbackEvent> {
     }
 
     /**
-     * @param {StoreFeedbackEvent} feedback
+     * @param {StoreFeedbackEvent} event
      * @returns {Promise<void>}
      */
-    async handle(feedback: StoreFeedbackEvent) {
-        await this.feedbackRepository.store(feedback.feedback);
+    async handle(event: StoreFeedbackEvent) {
+        await this.feedbackRepository.store(event.feedback);
     }
 }

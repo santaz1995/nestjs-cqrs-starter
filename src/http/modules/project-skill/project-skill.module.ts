@@ -43,6 +43,12 @@ import { UpdateProjectSkillExecute } from '../../../application/command/project-
     ],
 })
 export class ProjectSkillModule implements OnModuleInit {
+
+    /**
+     * @param {ModuleRef} moduleRef
+     * @param {CommandBus} command$
+     * @param {EventBus} event$
+     */
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus,

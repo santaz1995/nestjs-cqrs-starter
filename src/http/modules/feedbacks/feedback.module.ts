@@ -28,6 +28,12 @@ import { GetByIdFeedbackExecute } from '../../../application/query/feedback/get-
     ],
 })
 export class FeedbackModule implements OnModuleInit {
+
+    /**
+     * @param {ModuleRef} moduleRef
+     * @param {CommandBus} command$
+     * @param {EventBus} event$
+     */
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus,

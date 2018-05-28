@@ -12,6 +12,7 @@ npm-debug.log
 # dist
 /dist
 /public/uploads/*
+.env
 
 # tests
 /test

@@ -43,6 +43,12 @@ import { StoreProjectCategoryHandler } from '../../../application/event/project-
     ],
 })
 export class ProjectCategoryModule implements OnModuleInit {
+
+    /**
+     * @param {ModuleRef} moduleRef
+     * @param {CommandBus} command$
+     * @param {EventBus} event$
+     */
     constructor(
         private readonly moduleRef: ModuleRef,
         private readonly command$: CommandBus,

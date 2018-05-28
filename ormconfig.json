@@ -9,6 +9,7 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
+      "src/domains/user/user.ts",
       "src/domains/feedback/feedback.ts",
       "src/domains/project-category/project-category.ts",
       "src/domains/project-image/project-image.ts",
@@ -27,6 +28,7 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
+      "src/domains/user/user.ts",
       "src/domains/feedback/feedback.ts",
       "src/domains/project-category/project-category.ts",
       "src/domains/project-image/project-image.ts",
