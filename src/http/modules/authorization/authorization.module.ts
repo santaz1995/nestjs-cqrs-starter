@@ -6,7 +6,7 @@ import { TypeOrmUserCommandRepository } from '../../../infrastructures/domain/ty
 import { TypeOrmUserQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-user.query.repository';
 import { SignUpExecute } from '../../../application/command/authorization/sign-up.execute';
 import { StoreUserHandler } from '../../../application/event/user/store-user.handler';
-import { SignInExecute } from '../../../application/query/authorization/sign-in.execute';
+import { SignInExecute } from '../../../application/command/authorization/sign-in.execute';
 
 @Module({
     imports: [CQRSModule],

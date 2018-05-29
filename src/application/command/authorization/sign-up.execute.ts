@@ -29,7 +29,6 @@ export class SignUpExecute implements ICommandHandler<SignUpCommand> {
             command.lastName,
         );
 
-
         const userRegister = this.publisher.mergeObjectContext(
             await this.userRepository.store(user),
         );

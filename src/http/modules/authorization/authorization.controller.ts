@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { SignUpCommand } from '../../../application/command/authorization/sign-up.command';
-import { SignInCommand } from '../../../application/query/authorization/sign-in.command';
+import { SignInCommand } from '../../../application/command/authorization/sign-in.command';
 
 @Controller('')
 export class AuthorizationController {

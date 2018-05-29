@@ -25,9 +25,8 @@ export class SignInExecute implements ICommandHandler<SignInCommand> {
             const expiresIn = process.env.EXPIRES_IN;
             const accessToken =  {token: jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn })};
             console.log(accessToken);
+            console.log(user);
         }
-
-        console.log(user);
 
         resolve();
     }
