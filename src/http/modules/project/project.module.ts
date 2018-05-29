@@ -17,11 +17,11 @@ import { StoreProjectHandler } from '../../../application/event/project/store-pr
     providers: [
         {
             provide: 'ProjectCommandRepository',
-            useValue: TypeOrmProjectCommandRepository
+            useClass: TypeOrmProjectCommandRepository
         },
         {
             provide: 'ProjectQueryRepository',
-            useValue: TypeOrmProjectQueryRepository
+            useClass: TypeOrmProjectQueryRepository
         },
         /**
          * Command

@@ -1,4 +1,4 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectSkillQueryRepository } from '../../../../domains/project-skill/project-skill.query.repository';
@@ -7,6 +7,10 @@ import { ProjectSkillNotFoundException } from '../../../../domains/project-skill
 
 @EntityRepository()
 export class TypeOrmProjectSkillQueryRepository extends TypeOrmQueryRepository implements ProjectSkillQueryRepository {
+
+    constructor() {
+        super(getManager('query'));
+    }
 
     /**
      * @returns {Promise<ProjectSkill>}

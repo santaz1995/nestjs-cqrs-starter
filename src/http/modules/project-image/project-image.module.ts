@@ -15,11 +15,11 @@ import { GetProjectImageExecute } from '../../../application/query/project-image
     providers: [
         {
             provide: 'ProjectImageCommandRepository',
-            useValue: TypeOrmProjectImageCommandRepository
+            useClass: TypeOrmProjectImageCommandRepository,
         },
         {
             provide: 'ProjectImageQueryRepository',
-            useValue: TypeOrmProjectImageQueryRepository
+            useClass: TypeOrmProjectImageQueryRepository,
         },
         /**
          * Command

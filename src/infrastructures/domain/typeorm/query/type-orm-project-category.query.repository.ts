@@ -1,4 +1,4 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectCategoryQueryRepository } from '../../../../domains/project-category/project-category.query.repository';
@@ -7,6 +7,10 @@ import { ProjectCategoryNotFoundException } from '../../../../domains/project-ca
 
 @EntityRepository()
 export class TypeOrmProjectCategoryQueryRepository extends TypeOrmQueryRepository implements ProjectCategoryQueryRepository {
+
+    constructor() {
+        super(getManager('query'));
+    }
 
     /**
      * @returns {Promise<ProjectCategory>}

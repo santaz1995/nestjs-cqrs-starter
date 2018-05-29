@@ -1,12 +1,12 @@
-import { EntityManager, getManager, SelectQueryBuilder } from 'typeorm';
+import { EntityManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 
 export abstract class TypeOrmQueryRepository {
 
     protected entityManager: EntityManager;
 
-    protected constructor() {
-        this.entityManager = getManager('query');
+    protected constructor(entityManager: EntityManager) {
+        this.entityManager =  entityManager;
     }
 
     /**

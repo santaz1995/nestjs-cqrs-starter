@@ -17,11 +17,11 @@ import { StoreProjectCategoryHandler } from '../../../application/event/project-
     providers: [
         {
             provide: 'ProjectCategoryCommandRepository',
-            useValue: TypeOrmProjectCategoryCommandRepository
+            useClass: TypeOrmProjectCategoryCommandRepository,
         },
         {
             provide: 'ProjectCategoryQueryRepository',
-            useValue: TypeOrmProjectCategoryQueryRepository
+            useClass: TypeOrmProjectCategoryQueryRepository,
         },
         /**
          * Command

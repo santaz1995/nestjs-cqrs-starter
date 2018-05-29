@@ -1,4 +1,4 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
 import { ProjectImageQueryRepository } from '../../../../domains/project-image/project-image.query.repository';
@@ -7,6 +7,10 @@ import { ProjectImageNotFoundException } from '../../../../domains/project-image
 
 @EntityRepository()
 export class TypeOrmProjectImageQueryRepository extends TypeOrmQueryRepository implements ProjectImageQueryRepository {
+
+    constructor() {
+        super(getManager('query'));
+    }
 
     /**
      * @returns {Promise<ProjectCategory>}

@@ -1,4 +1,4 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 import { TypeOrmCommandRepository } from './type-orm.command.repository';
 import { UserCommandRepository } from '../../../../domains/user/user.command.repository';
@@ -6,6 +6,10 @@ import { User } from '../../../../domains/user/user';
 
 @EntityRepository()
 export class TypeOrmUserCommandRepository extends TypeOrmCommandRepository implements UserCommandRepository {
+
+    constructor() {
+        super(getManager());
+    }
 
     /**
      * @param {number} id

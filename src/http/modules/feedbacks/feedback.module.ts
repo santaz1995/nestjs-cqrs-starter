@@ -15,11 +15,11 @@ import { StoreFeedbackHandler } from '../../../application/event/feedback/store-
     providers: [
         {
             provide: 'FeedbackCommandRepository',
-            useValue: TypeOrmFeedbackCommandRepository
+            useClass: TypeOrmFeedbackCommandRepository,
         },
         {
             provide: 'FeedbackQueryRepository',
-            useValue: TypeOrmFeedbackQueryRepository
+            useClass: TypeOrmFeedbackQueryRepository,
         },
         /**
          * Command

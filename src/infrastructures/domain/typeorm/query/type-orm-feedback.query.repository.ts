@@ -1,4 +1,4 @@
-import { EntityRepository, SelectQueryBuilder } from 'typeorm';
+import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
 import { Feedback } from '../../../../domains/feedback/feedback';
 import { TypeOrmQueryRepository } from './type-orm.query.repository';
@@ -7,6 +7,10 @@ import { FeedbackNotFoundException } from '../../../../domains/feedback/feedback
 
 @EntityRepository()
 export class TypeOrmFeedbackQueryRepository extends TypeOrmQueryRepository implements FeedbackQueryRepository {
+
+    constructor() {
+        super(getManager('query'));
+    }
 
     /**
      * @returns {Promise<Feedback>}

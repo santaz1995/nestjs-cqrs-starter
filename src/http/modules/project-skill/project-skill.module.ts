@@ -17,11 +17,11 @@ import { UpdateProjectSkillExecute } from '../../../application/command/project-
     providers: [
         {
             provide: 'ProjectSkillCommandRepository',
-            useValue: TypeOrmProjectSkillCommandRepository
+            useClass: TypeOrmProjectSkillCommandRepository
         },
         {
             provide: 'ProjectSkillQueryRepository',
-            useValue: TypeOrmProjectSkillQueryRepository
+            useClass: TypeOrmProjectSkillQueryRepository
         },
         /**
          * Command
