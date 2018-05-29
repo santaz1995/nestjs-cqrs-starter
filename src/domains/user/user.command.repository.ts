@@ -6,7 +6,7 @@ export interface UserCommandRepository {
      * @param {number} id
      * @returns {Promise<User>}
      */
-    byId(id: number): Promise<User>
+    byId(id: number): Promise<User>;
     
     /**
      * @param {User} user
