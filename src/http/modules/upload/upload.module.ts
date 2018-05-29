@@ -5,9 +5,9 @@ import { UploadController } from './upload.controller';
 import { UploadBase64Execute } from '../../../application/command/upload/upload-base64.execute';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [UploadController],
-    components: [
+    providers: [
         UploadBase64Execute,
     ],
 })
@@ -25,6 +25,8 @@ export class UploadModule implements OnModuleInit {
     onModuleInit() {
         this.command$.setModuleRef(this.moduleRef);
 
-        this.command$.register([UploadBase64Execute]);
+        this.command$.register([
+            UploadBase64Execute
+        ]);
     }
 }

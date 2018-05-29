@@ -12,16 +12,16 @@ import { GetByIdProjectExecute } from '../../../application/query/project/get-by
 import { StoreProjectHandler } from '../../../application/event/project/store-project.handler';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [ProjectController],
-    components: [
+    providers: [
         {
             provide: 'ProjectCommandRepository',
-            useClass: TypeOrmProjectCommandRepository
+            useValue: TypeOrmProjectCommandRepository
         },
         {
             provide: 'ProjectQueryRepository',
-            useClass: TypeOrmProjectQueryRepository
+            useValue: TypeOrmProjectQueryRepository
         },
         /**
          * Command

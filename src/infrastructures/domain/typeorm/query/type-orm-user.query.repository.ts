@@ -9,7 +9,7 @@ import { UserNotFoundException } from '../../../../domains/user/user-not-found.e
 export class TypeOrmUserQueryRepository extends TypeOrmQueryRepository implements UserQueryRepository {
 
     /**
-     * @returns {Promise<ProjectSkill>}
+     * @returns {Promise<User>}
      */
     public getAll(): Promise<User[]> {
         return this.createQueryBuilder().getMany();
@@ -17,7 +17,7 @@ export class TypeOrmUserQueryRepository extends TypeOrmQueryRepository implement
 
     /**
      * @param {number} id
-     * @returns {Promise<ProjectSkill>}
+     * @returns {Promise<User>}
      */
     public getById(id: number): Promise<User> {
         return this.createQueryBuilder()
@@ -26,6 +26,23 @@ export class TypeOrmUserQueryRepository extends TypeOrmQueryRepository implement
             .getOne()
             .then((user: User) => {
                 if (!user) throw UserNotFoundException.fromId(id);
+                return user;
+            });
+    }
+
+    /**
+     * @param {string} email
+     * @returns {Promise<User>}
+     */
+    public getByEmail(email: string): Promise<User> {
+        console.log(email);
+
+        return this.createQueryBuilder()
+            .andWhere('u.email = :email')
+            .setParameter('email', email)
+            .getOne()
+            .then((user: User) => {
+                if (!user) throw UserNotFoundException.fromEmail(email);
                 return user;
             });
     }

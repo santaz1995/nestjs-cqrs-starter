@@ -12,16 +12,16 @@ import { DeleteProjectCategoryExecute } from '../../../application/command/proje
 import { StoreProjectCategoryHandler } from '../../../application/event/project-category/store-project-category.handler';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [ProjectCategoryController],
-    components: [
+    providers: [
         {
             provide: 'ProjectCategoryCommandRepository',
-            useClass: TypeOrmProjectCategoryCommandRepository
+            useValue: TypeOrmProjectCategoryCommandRepository
         },
         {
             provide: 'ProjectCategoryQueryRepository',
-            useClass: TypeOrmProjectCategoryQueryRepository
+            useValue: TypeOrmProjectCategoryQueryRepository
         },
         /**
          * Command
@@ -29,13 +29,11 @@ import { StoreProjectCategoryHandler } from '../../../application/event/project-
         CreateProjectCategoryExecute,
         UpdateProjectCategoryExecute,
         DeleteProjectCategoryExecute,
-
         /**
          * Query
          */
         GetProjectCategoryExecute,
         GetByIdProjectCategoryExecute,
-
         /**
          * Event command
          */
@@ -67,6 +65,8 @@ export class ProjectCategoryModule implements OnModuleInit {
             GetByIdProjectCategoryExecute,
         ]);
 
-        this.event$.register([StoreProjectCategoryHandler]);
+        this.event$.register([
+            StoreProjectCategoryHandler
+        ]);
     }
 }

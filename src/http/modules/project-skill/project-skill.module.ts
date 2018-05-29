@@ -12,16 +12,16 @@ import { StoreProjectSkillHandler } from '../../../application/event/project-ski
 import { UpdateProjectSkillExecute } from '../../../application/command/project-skill/update-project-skill.execute';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [ProjectSkillController],
-    components: [
+    providers: [
         {
             provide: 'ProjectSkillCommandRepository',
-            useClass: TypeOrmProjectSkillCommandRepository
+            useValue: TypeOrmProjectSkillCommandRepository
         },
         {
             provide: 'ProjectSkillQueryRepository',
-            useClass: TypeOrmProjectSkillQueryRepository
+            useValue: TypeOrmProjectSkillQueryRepository
         },
         /**
          * Command
@@ -67,6 +67,8 @@ export class ProjectSkillModule implements OnModuleInit {
             GetByIdProjectSkillExecute,
         ]);
 
-        this.event$.register([StoreProjectSkillHandler]);
+        this.event$.register([
+            StoreProjectSkillHandler
+        ]);
     }
 }

@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { SignUpCommand } from '../../../application/command/authorization/sign-up.command';
+import { SignInCommand } from '../../../application/query/authorization/sign-in.command';
 
 @Controller('')
 export class AuthorizationController {
@@ -9,15 +10,18 @@ export class AuthorizationController {
 
     @Post('sign-in')
     public async signIn(@Body() request) {
-        /** TODO create */
-        /*return await this.commandBus.execute(
 
-        );*/
+        return await this.commandBus.execute(
+            new SignInCommand(
+                request.email,
+                request.password
+            )
+        );
     }
 
     @Post('sign-up')
     public async signUp(@Body() request) {
-        /** TODO create */
+
         await this.commandBus.execute(
             new SignUpCommand(
                 request.email,

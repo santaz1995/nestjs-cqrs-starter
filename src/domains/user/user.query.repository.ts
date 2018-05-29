@@ -13,6 +13,11 @@ export interface UserQueryRepository {
     getById(id: number): Promise<User>;
 
     /**
+     * @returns {Promise<User[]>}
+     */
+    getByEmail(email: string): Promise<User>;
+
+    /**
      * @param {User} user
      */
     store(user: User): Promise<User>;

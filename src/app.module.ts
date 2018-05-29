@@ -8,7 +8,7 @@ import { ProjectImageModule } from './http/modules/project-image/project-image.m
 import { AuthorizationModule } from './http/modules/authorization/authorization.module';
 
 @Module({
-    modules: [
+    imports: [
         FeedbackModule,
         ProjectModule,
         ProjectCategoryModule,
@@ -17,8 +17,5 @@ import { AuthorizationModule } from './http/modules/authorization/authorization.
         UploadModule,
         AuthorizationModule
     ],
-    components: [
-    ]
 })
-export class ApplicationModule {
-}
+export class ApplicationModule {}

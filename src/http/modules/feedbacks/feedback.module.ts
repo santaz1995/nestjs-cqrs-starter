@@ -1,4 +1,4 @@
-import { CommandBus, CQRSModule, EventBus } from '@nestjs/cqrs';
+import { CommandBus, EventBus, CQRSModule } from '@nestjs/cqrs';
 import { OnModuleInit, Module } from '@nestjs/common';
 import { ModuleRef } from '@nestjs/core';
 import { FeedbackController } from './feedback.controller';
@@ -6,24 +6,33 @@ import { TypeOrmFeedbackCommandRepository } from '../../../infrastructures/domai
 import { TypeOrmFeedbackQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-feedback.query.repository';
 import { CreateFeedbackExecute } from '../../../application/command/feedback/create-feedback.execute';
 import { GetFeedbacksExecute } from '../../../application/query/feedback/get-feedbacks.execute';
-import { StoreFeedbackHandler } from '../../../application/event/feedback/store-feedback.handler';
 import { GetByIdFeedbackExecute } from '../../../application/query/feedback/get-by-id-feedback.execute';
+import { StoreFeedbackHandler } from '../../../application/event/feedback/store-feedback.handler';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [FeedbackController],
-    components: [
+    providers: [
         {
             provide: 'FeedbackCommandRepository',
-            useClass: TypeOrmFeedbackCommandRepository
+            useValue: TypeOrmFeedbackCommandRepository
         },
         {
             provide: 'FeedbackQueryRepository',
-            useClass: TypeOrmFeedbackQueryRepository
+            useValue: TypeOrmFeedbackQueryRepository
         },
+        /**
+         * Command
+         */
         CreateFeedbackExecute,
+        /**
+         * Query
+         */
         GetFeedbacksExecute,
         GetByIdFeedbackExecute,
+        /**
+         * Event
+         */
         StoreFeedbackHandler
     ],
 })
@@ -44,8 +53,13 @@ export class FeedbackModule implements OnModuleInit {
         this.command$.setModuleRef(this.moduleRef);
         this.event$.setModuleRef(this.moduleRef);
 
-        this.command$.register([CreateFeedbackExecute, GetFeedbacksExecute, GetByIdFeedbackExecute]);
-        
-        this.event$.register([StoreFeedbackHandler]);
+        this.command$.register([
+            CreateFeedbackExecute,
+            GetFeedbacksExecute,
+            GetByIdFeedbackExecute
+        ]);
+        this.event$.register([
+            StoreFeedbackHandler
+        ]);
     }
 }

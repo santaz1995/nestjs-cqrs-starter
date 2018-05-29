@@ -10,16 +10,16 @@ import { StoreProjectImageHandler } from '../../../application/event/project-ima
 import { GetProjectImageExecute } from '../../../application/query/project-image/get-project-image.execute';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [ProjectImageController],
-    components: [
+    providers: [
         {
             provide: 'ProjectImageCommandRepository',
-            useClass: TypeOrmProjectImageCommandRepository
+            useValue: TypeOrmProjectImageCommandRepository
         },
         {
             provide: 'ProjectImageQueryRepository',
-            useClass: TypeOrmProjectImageQueryRepository
+            useValue: TypeOrmProjectImageQueryRepository
         },
         /**
          * Command
@@ -61,6 +61,8 @@ export class ProjectImageModule implements OnModuleInit {
             GetProjectImageExecute
         ]);
 
-        this.event$.register([StoreProjectImageHandler]);
+        this.event$.register([
+            StoreProjectImageHandler
+        ]);
     }
 }

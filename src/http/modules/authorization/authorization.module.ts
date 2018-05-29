@@ -6,11 +6,12 @@ import { TypeOrmUserCommandRepository } from '../../../infrastructures/domain/ty
 import { TypeOrmUserQueryRepository } from '../../../infrastructures/domain/typeorm/query/type-orm-user.query.repository';
 import { SignUpExecute } from '../../../application/command/authorization/sign-up.execute';
 import { StoreUserHandler } from '../../../application/event/user/store-user.handler';
+import { SignInExecute } from '../../../application/query/authorization/sign-in.execute';
 
 @Module({
-    modules: [CQRSModule],
+    imports: [CQRSModule],
     controllers: [AuthorizationController],
-    components: [
+    providers: [
         {
             provide: 'UserCommandRepository',
             useClass: TypeOrmUserCommandRepository
@@ -19,7 +20,18 @@ import { StoreUserHandler } from '../../../application/event/user/store-user.han
             provide: 'UserQueryRepository',
             useClass: TypeOrmUserQueryRepository
         },
+        /**
+         * Command
+         */
         SignUpExecute,
+        /**
+         * Query
+         */
+        SignInExecute,
+        /**
+         * Event
+         */
+        StoreUserHandler
     ],
 })
 export class AuthorizationModule implements OnModuleInit {
@@ -39,8 +51,13 @@ export class AuthorizationModule implements OnModuleInit {
         this.command$.setModuleRef(this.moduleRef);
         this.event$.setModuleRef(this.moduleRef);
 
-        this.command$.register([SignUpExecute]);
+        this.command$.register([
+            SignUpExecute,
+            SignInExecute
+        ]);
         
-        this.event$.register([StoreUserHandler]);
+        this.event$.register([
+            StoreUserHandler
+        ]);
     }
 }
