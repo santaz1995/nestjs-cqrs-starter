@@ -4,6 +4,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import { SignInCommand } from './sign-in.command';
 import { UserQueryRepository } from '../../../domains/user/user.query.repository';
+import { UserNotFoundException } from '../../../domains/user/user-not-found.exception';
 
 @CommandHandler(SignInCommand)
 export class SignInExecute implements ICommandHandler<SignInCommand> {
@@ -24,10 +25,10 @@ export class SignInExecute implements ICommandHandler<SignInCommand> {
         if (user && bcrypt.compareSync(command.password, user.password)) {
             const expiresIn = process.env.EXPIRES_IN;
             const accessToken =  {token: jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn })};
-            console.log(accessToken);
-            console.log(user);
+
+            resolve(accessToken);
         }
 
-        resolve();
+        throw UserNotFoundException.authorized();
     }
 }
