@@ -8,11 +8,13 @@ import { CreateFeedbackExecute } from '../../../application/command/feedback/cre
 import { GetFeedbacksExecute } from '../../../application/query/feedback/get-feedbacks.execute';
 import { GetByIdFeedbackExecute } from '../../../application/query/feedback/get-by-id-feedback.execute';
 import { StoreFeedbackHandler } from '../../../application/event/feedback/store-feedback.handler';
+import { JwtStrategy } from '../../../utils/jwt/jwt.strategy';
 
 @Module({
     imports: [CQRSModule],
     controllers: [FeedbackController],
     providers: [
+        JwtStrategy,
         {
             provide: 'FeedbackCommandRepository',
             useClass: TypeOrmFeedbackCommandRepository,

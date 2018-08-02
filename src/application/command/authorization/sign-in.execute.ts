@@ -24,11 +24,10 @@ export class SignInExecute implements ICommandHandler<SignInCommand> {
 
         if (user && bcrypt.compareSync(command.password, user.password)) {
             const expiresIn = process.env.EXPIRES_IN;
-            const accessToken =  {token: jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn })};
-
+            const accessToken = {token: jwt.sign({id: user.id}, process.env.JWT_SECRET, { expiresIn: expiresIn })};
             resolve(accessToken);
+        } else {
+            throw UserNotFoundException.authorized();
         }
-
-        throw UserNotFoundException.authorized();
     }
 }

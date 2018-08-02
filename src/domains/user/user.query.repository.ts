@@ -21,4 +21,9 @@ export interface UserQueryRepository {
      * @param {User} user
      */
     store(user: User): Promise<User>;
+
+    /**
+     * @param token
+     */
+    byToken(token: string): Promise<User>
 }

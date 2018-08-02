@@ -7,11 +7,13 @@ import { TypeOrmUserQueryRepository } from '../../../infrastructures/domain/type
 import { SignUpExecute } from '../../../application/command/authorization/sign-up.execute';
 import { StoreUserHandler } from '../../../application/event/user/store-user.handler';
 import { SignInExecute } from '../../../application/command/authorization/sign-in.execute';
+import { JwtStrategy } from '../../../utils/jwt/jwt.strategy';
 
 @Module({
     imports: [CQRSModule],
     controllers: [AuthorizationController],
     providers: [
+        JwtStrategy,
         {
             provide: 'UserCommandRepository',
             useClass: TypeOrmUserCommandRepository

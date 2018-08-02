@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateFeedbackCommand } from '../../../application/command/feedback/create-feedback.command';
 import { GetFeedbacksCommand } from '../../../application/query/feedback/get-feedbacks.command';
@@ -10,6 +11,7 @@ export class FeedbackController {
     constructor(private readonly commandBus: CommandBus) {}
 
     @Get()
+    @UseGuards(AuthGuard('jwt'))
     public async getAll() {
 
         return await this.commandBus.execute(

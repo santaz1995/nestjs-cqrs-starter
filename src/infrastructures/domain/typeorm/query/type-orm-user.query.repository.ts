@@ -39,7 +39,6 @@ export class TypeOrmUserQueryRepository extends TypeOrmQueryRepository implement
      * @returns {Promise<User>}
      */
     public getByEmail(email: string): Promise<User> {
-        console.log(email);
 
         return this.createQueryBuilder()
             .andWhere('u.email = :email')
