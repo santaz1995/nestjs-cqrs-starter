@@ -1,0 +1,47 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5412,
+    "username": "portfolio",
+    "password": "Eh7gLagHHHzK2h7j",
+    "database": "portfolio",
+    "synchronize": "all",
+    "entities": [
+      "src/domains/user/user.ts",
+      "src/domains/feedback/feedback.ts",
+      "src/domains/project-category/project-category.ts",
+      "src/domains/project-image/project-image.ts",
+      "src/domains/project-skill/project-skill.ts",
+      "src/domains/project/project.ts"
+    ],
+    "logging": false
+  },
+  {
+    "name": "query",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5413,
+    "username": "portfolio",
+    "password": "Eh7gLagHHHzK2h7j",
+    "database": "portfolio",
+    "synchronize": "all",
+    "entities": [
+      "src/domains/user/user.ts",
+      "src/domains/feedback/feedback.ts",
+      "src/domains/project-category/project-category.ts",
+      "src/domains/project-image/project-image.ts",
+      "src/domains/project-skill/project-skill.ts",
+      "src/domains/project/project.ts"
+    ],
+    "logging": false
+  },
+  {
+    "name": "c",
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "portfolio"
+  }
+]

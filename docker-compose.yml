@@ -1,0 +1,35 @@
+version: "2"
+services:
+ database:
+    image: postgres:latest
+    ports:
+    - 5412:5432
+    volumes:
+    - data:/var/lib/postgresql/command/data
+    environment:
+      POSTGRES_PASSWORD: Eh7gLagHHHzK2h7j
+      POSTGRES_USER: portfolio
+      POSTGRES_DB: portfolio
+ database2:
+    image: postgres:latest
+    ports:
+     - 5413:5432
+    volumes:
+     - data:/var/lib/postgresql/query/data
+    environment:
+      POSTGRES_PASSWORD: Eh7gLagHHHzK2h7j
+      POSTGRES_USER: portfolio
+      POSTGRES_DB: portfolio
+ mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/var/lib/monodb/data
+    environment:
+        MONGODB_DATABASE: event
+        MONGODB_USER: event
+        MONGODB_PASS: Eh7gLagHHHzK2h7j
+    command: mongod --smallfiles --logpath=/dev/null
+volumes:
+ data: {}
