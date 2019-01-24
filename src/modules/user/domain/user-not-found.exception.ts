@@ -1,4 +1,4 @@
-import { EntityNotFoundException } from '../../../exceptions/entity-not-found.exception';
+import { EntityNotFoundException } from '../../../common/exceptions/entity-not-found.exception';
 
 export class UserNotFoundException extends EntityNotFoundException {
 

@@ -8,7 +8,7 @@ import { TypeOrmUserCommandRepository } from '../user/repository/type-orm/type-o
 import { TypeOrmUserQueryRepository } from '../user/repository/type-orm/type-orm-user.query.repository';
 import { SignUpExecute } from './application/commands/sign-up.execute';
 import { SignInExecute } from './application/commands/sign-in.execute';
-import { JwtStrategy } from '../../utils/jwt/jwt.strategy';
+import { JwtStrategy } from '../../common/utils/jwt/jwt.strategy';
 import { StoreUserHandler } from '../user/application/events/store-user.handler';
 
 @Module({
@@ -16,9 +16,9 @@ import { StoreUserHandler } from '../user/application/events/store-user.handler'
         CQRSModule,
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({
-            secretOrPrivateKey: '123',
+            secretOrPrivateKey: process.env.JWT_SECRET,
             signOptions: {
-                expiresIn: 36000,
+                expiresIn: process.env.EXPIRES_IN,
             },
         }),
     ],

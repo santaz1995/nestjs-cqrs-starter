@@ -1,6 +1,6 @@
 import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmQueryRepository } from '../../../../database/type-orm/type-orm.query.repository';
+import { TypeOrmQueryRepository } from '../../../../common/database/type-orm/type-orm.query.repository';
 import { UserQueryRepository } from '../../domain/user.query.repository';
 import { User } from '../../domain/user';
 import { UserNotFoundException } from '../../domain/user-not-found.exception';

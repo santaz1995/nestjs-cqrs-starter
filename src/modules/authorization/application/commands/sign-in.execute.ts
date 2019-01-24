@@ -5,7 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { SignInCommand } from './sign-in.command';
 import { UserQueryRepository } from '../../../user/domain/user.query.repository';
 import { UserNotFoundException } from '../../../user/domain/user-not-found.exception';
-import { JwtPayload } from '../../../../utils/jwt/jwt-payload.interface';
+import { JwtPayload } from '../../../../common/utils/jwt/jwt-payload.interface';
 
 @CommandHandler(SignInCommand)
 export class SignInExecute implements ICommandHandler<SignInCommand> {

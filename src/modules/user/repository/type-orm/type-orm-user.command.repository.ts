@@ -1,6 +1,6 @@
 import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmCommandRepository } from '../../../../database/type-orm/type-orm.command.repository';
+import { TypeOrmCommandRepository } from '../../../../common/database/type-orm/type-orm.command.repository';
 import { UserCommandRepository } from '../../domain/user.command.repository';
 import { User } from '../../domain/user';
 

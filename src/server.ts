@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { createConnections } from 'typeorm';
-import { ValidationPipe } from './pipes/validation.pipe';
 import { ApplicationModule } from './app.module';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as path from 'path';
+import { ValidationPipe } from './common/pipes/validation.pipe';
 
 function bootstrap() {
     createConnections().then(async () => {
@@ -15,7 +15,7 @@ function bootstrap() {
         app.use('/uploads', express.static(path.resolve('./public/uploads')));
         app.setGlobalPrefix('api');
         app.useGlobalPipes(new ValidationPipe());
-        app.listen(3000, () => console.log('Application is listening on port 3000.'));
+        app.listen(process.env.PORT, () => console.log(`Application is listening on port ${process.env.PORT}.`));
 
     }).catch(error => console.log('TypeORM connection error: ', error));
 

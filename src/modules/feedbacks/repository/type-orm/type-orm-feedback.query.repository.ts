@@ -1,6 +1,6 @@
 import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmQueryRepository } from '../../../../database/type-orm/type-orm.query.repository';
+import { TypeOrmQueryRepository } from '../../../../common/database/type-orm/type-orm.query.repository';
 import { FeedbackQueryRepository } from '../../domain/feedback-query.repository';
 import { Feedback } from '../../domain/feedback';
 import { FeedbackNotFoundException } from '../../domain/feedback-not-found.exception';

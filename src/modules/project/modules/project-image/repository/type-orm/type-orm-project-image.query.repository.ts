@@ -1,6 +1,6 @@
 import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmQueryRepository } from '../../../../../../database/type-orm/type-orm.query.repository';
+import { TypeOrmQueryRepository } from '../../../../../../common/database/type-orm/type-orm.query.repository';
 import { ProjectImageQueryRepository } from '../../domain/project-image.query.repository';
 import { ProjectImage } from '../../domain/project-image';
 import { ProjectImageNotFoundException } from '../../domain/project-image-not-found.exception';

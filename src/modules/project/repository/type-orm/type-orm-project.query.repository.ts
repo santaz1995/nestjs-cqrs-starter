@@ -1,6 +1,6 @@
 import { EntityRepository, getManager, SelectQueryBuilder } from 'typeorm';
 import { ObjectType } from 'typeorm/common/ObjectType';
-import { TypeOrmQueryRepository } from '../../../../database/type-orm/type-orm.query.repository';
+import { TypeOrmQueryRepository } from '../../../../common/database/type-orm/type-orm.query.repository';
 import { Project } from '../../domain/project';
 import { ProjectNotFoundException } from '../../domain/project-not-found.exception';
 

@@ -5,10 +5,13 @@ import { UploadModule } from './modules/upload/upload.module';
 import { ProjectSkillModule } from './modules/project/modules/project-skill/project-skill.module';
 import { ProjectImageModule } from './modules/project/modules/project-image/project-image.module';
 import { AuthorizationModule } from './modules/authorization/authorization.module';
+import { ConfigModule } from './common/modules/config/config.module';
 import { Module } from '@nestjs/common';
 
 @Module({
     imports: [
+        ConfigModule,
+
         FeedbackModule,
         ProjectModule,
         ProjectCategoryModule,
