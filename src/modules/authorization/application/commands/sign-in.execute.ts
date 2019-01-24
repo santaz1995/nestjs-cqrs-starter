@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { SignInCommand } from './sign-in.command';
 import { UserQueryRepository } from '../../../user/domain/user.query.repository';
 import { UserNotFoundException } from '../../../user/domain/user-not-found.exception';
+import { JwtPayload } from '../../../../utils/jwt/jwt-payload.interface';
 
 @CommandHandler(SignInCommand)
 export class SignInExecute implements ICommandHandler<SignInCommand> {
@@ -22,9 +23,10 @@ export class SignInExecute implements ICommandHandler<SignInCommand> {
     async execute(command: SignInCommand, resolve: (value?) => void) {
 
         const user = await this.userRepository.getByEmail(command.email);
+        const userPayload: JwtPayload = {email: user.email};
 
         if (user && bcrypt.compareSync(command.password, user.password)) {
-            const accessToken = {token: this.jwtService.sign(user)};
+            const accessToken = {token: this.jwtService.sign(userPayload)};
             resolve(accessToken);
         } else {
             throw UserNotFoundException.authorized();

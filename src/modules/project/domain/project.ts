@@ -99,8 +99,6 @@ export class Project extends AggregateRoot {
     projectCategories: ProjectCategory[];
 
     @ManyToMany(() => ProjectSkill, projectSkill => projectSkill.projects, {
-        cascadeInsert: true,
-        cascadeUpdate: true,
         eager: false
     })
     @JoinTable({

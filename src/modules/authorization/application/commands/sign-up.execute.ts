@@ -19,7 +19,7 @@ export class SignUpExecute implements ICommandHandler<SignUpCommand> {
      * @returns {Promise<void>}
      */
     async execute(command: SignUpCommand, resolve: (value?) => void) {
-
+        console.log(command.password);
         resolve();
 
         const user = User.register(

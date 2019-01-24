@@ -42,7 +42,7 @@ export class ProjectSkill extends AggregateRoot {
     @Exclude()
     deletedAt: Date;
 
-    @ManyToMany( () => Project, project => project.projectSkills, {cascadeInsert: true, cascadeUpdate: true, eager: false})
+    @ManyToMany( () => Project, project => project.projectSkills, {eager: false})
     @JoinTable({
         name: 'projects_skills',
         joinColumn: {

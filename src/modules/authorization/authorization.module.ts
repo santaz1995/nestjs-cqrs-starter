@@ -18,7 +18,7 @@ import { StoreUserHandler } from '../user/application/events/store-user.handler'
         JwtModule.register({
             secretOrPrivateKey: '123',
             signOptions: {
-                expiresIn: process.env.EXPIRES_IN,
+                expiresIn: 36000,
             },
         }),
     ],

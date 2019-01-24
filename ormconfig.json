@@ -9,12 +9,8 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "src/domains/user/user.ts",
-      "src/domains/feedback/feedback.ts",
-      "src/domains/project-category/project-category.ts",
-      "src/domains/project-image/project-image.ts",
-      "src/domains/project-skill/project-skill.ts",
-      "src/domains/project/project.ts"
+      "src/modules/**/domain/**.ts",
+      "src/modules/**/modules/**/domain/**.ts"
     ],
     "logging": false
   },
@@ -28,12 +24,8 @@
     "database": "portfolio",
     "synchronize": "all",
     "entities": [
-      "src/domains/user/user.ts",
-      "src/domains/feedback/feedback.ts",
-      "src/domains/project-category/project-category.ts",
-      "src/domains/project-image/project-image.ts",
-      "src/domains/project-skill/project-skill.ts",
-      "src/domains/project/project.ts"
+      "src/modules/**/domain/**.ts",
+      "src/modules/**/modules/**/domain/**.ts"
     ],
     "logging": false
   },
